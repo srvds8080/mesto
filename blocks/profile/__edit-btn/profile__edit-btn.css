@@ -5,4 +5,9 @@
 	background-image: url(../../../images/profile-edit.svg);
 	background-repeat: no-repeat;
 	background-position: center;
+	transition: ease 0.3s;
+}
+.profile__edit-btn:hover {
+	transition: ease 0.4s;
+	opacity: 0.4;
 }

@@ -1,0 +1,15 @@
+.form__btn {
+	min-width: 358px;
+	min-height: 50px;
+	background: #000000;
+	border-radius: 2px;
+	color: #ffffff;
+	font-size: 18px;
+	line-height: 1.2;
+	text-align: center;
+	transition: ease 0.3s;
+}
+.form__btn:hover {
+	transition: ease 0.4s;
+	opacity: .8;
+}

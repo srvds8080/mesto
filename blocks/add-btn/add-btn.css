@@ -7,20 +7,15 @@
 	background-image: url(../../images/add-btn.svg);
 	background-repeat: no-repeat;
 	background-position: center;
+	transition: ease 0.3s;
 }
-/* @media screen and (min-width: 421px) {
-	.add-btn {
-		max-width: 282px;
-	}
-} */
-/* @media screen and (min-width: 659px) {
-	.add-btn {
-		max-width: 568px;
-	}
-} */
 @media screen and (min-width: 768px) {
 	.add-btn {
 		width: 100%;
 		justify-self: end;
 	}
+}
+.add-btn:hover {
+	transition: ease 0.5s;
+	opacity: 0.4;
 }
