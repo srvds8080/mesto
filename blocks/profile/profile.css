@@ -13,3 +13,11 @@
 	align-items: center;
 	margin: 0 auto 36px;
 }
+@media screen and (min-width: 768px) {
+	.profile {
+		width: 100%;
+		display: grid;
+		grid-template-columns: 120px minmax(336px, 1280px) minmax(50px, 120px);
+		justify-content: baseline;
+	}
+}

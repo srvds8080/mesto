@@ -3,6 +3,10 @@
 	margin-bottom: 20px;
 }
 .elements__item:last-child {
-	width: 100%;
-	margin-bottom: 0;
+	margin-bottom: 0px;
+}
+@media screen and (min-width: 421px) {
+	.elements__item {
+		margin: 0;
+	}
 }

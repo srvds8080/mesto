@@ -5,3 +5,8 @@
 	object-position: center;
 	margin: 0 0 32px 27px;
 }
+@media screen and (min-width: 768px) {
+	.header__logo {
+		margin: 0 0 32px 0;
+	}
+}
