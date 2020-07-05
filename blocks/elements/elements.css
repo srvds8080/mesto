@@ -1,0 +1,9 @@
+@import url(./__item/elements__item.css);
+.elements {
+	width: 88.125%;
+	margin: 0 auto;
+	box-sizing: border-box;
+	display: flex;
+	flex-wrap: wrap;
+	margin-bottom: 48px;
+}

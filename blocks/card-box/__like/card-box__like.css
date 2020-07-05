@@ -1,0 +1,10 @@
+.card-box__like {
+	display: inline-block;
+	min-width: 21px;
+	height: 19px;
+	background-image: url(../../../images/like.svg);
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	margin-left: 31px;
+}

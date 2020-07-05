@@ -1,0 +1,8 @@
+.elements__item {
+	width: 100%;
+	margin-bottom: 20px;
+}
+.elements__item:last-child {
+	width: 100%;
+	margin-bottom: 0;
+}

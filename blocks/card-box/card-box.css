@@ -1,0 +1,9 @@
+@import url(./__image/card-box__image.css);
+@import url(./__description/card-box__description.css);
+@import url(./__text/card-box__text.css);
+@import url(./__like/card-box__like.css);
+.card-box {
+	display: flex;
+	flex-direction: column;
+	border-radius: 10px;
+}
