@@ -1,6 +1,8 @@
 .add-btn {
 	width: 100%;
 	min-height: 50px;
+	background: transparent;
+	padding: 0;
 	border: 2px solid #ffffff;
 	box-sizing: border-box;
 	border-radius: 2px;
@@ -18,4 +20,5 @@
 .add-btn:hover {
 	transition: ease 0.5s;
 	opacity: 0.4;
+	cursor: pointer;
 }

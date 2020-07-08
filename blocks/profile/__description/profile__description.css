@@ -1,7 +1,12 @@
 .profile__description {
+	max-width: 310px;
+	height: auto;
+	text-align: start;
+	text-overflow: ellipsis;
+	white-space: wrap;
+	overflow: hidden;
 	margin: 0;
 	font-weight: normal;
 	font-size: 14px;
 	line-height: 1.21;
-	text-align: center;
 }

@@ -1,10 +1,17 @@
-.card-box__like {
+.card-box__button {
 	display: inline-block;
 	min-width: 21px;
 	height: 19px;
+	background: transparent;
+	border: none;
+	padding: 0;
 	background-image: url(../../../images/like.svg);
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center;
 	margin-left: 31px;
+
+}
+.card-box__button:hover {
+	cursor: pointer;
 }

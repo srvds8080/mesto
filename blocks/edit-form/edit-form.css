@@ -1,0 +1,7 @@
+@import url(./__btn/edit-form__btn.css);
+@import url(./__input/edit-form__input.css);
+
+.edit-form {
+	width: 100%;
+	margin: 0 0 48px;
+}

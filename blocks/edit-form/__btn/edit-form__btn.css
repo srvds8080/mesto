@@ -1,4 +1,4 @@
-.form__btn {
+.edit-form__btn {
 	min-width: 358px;
 	min-height: 50px;
 	background: #000000;
@@ -9,7 +9,8 @@
 	text-align: center;
 	transition: ease 0.3s;
 }
-.form__btn:hover {
+.edit-form__btn:hover {
 	transition: ease 0.4s;
 	opacity: .8;
+	cursor: pointer;
 }

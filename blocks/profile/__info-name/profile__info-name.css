@@ -1,8 +1,13 @@
 .profile__info-name {
+	max-width: 310px;
+	height: auto;
+	text-align: start;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
 	margin: 0;
 	font-style: normal;
 	font-weight: 500;
 	font-size: 27px;
 	line-height: 2.07;
-	text-align: center;
 }
