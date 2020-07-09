@@ -10,6 +10,7 @@
 	background-repeat: no-repeat;
 	background-position: center;
 	transition: ease 0.3s;
+	outline: none;
 }
 @media screen and (min-width: 768px) {
 	.add-btn {
@@ -19,6 +20,6 @@
 }
 .add-btn:hover {
 	transition: ease 0.5s;
-	opacity: 0.4;
+	opacity: 0.6;
 	cursor: pointer;
 }

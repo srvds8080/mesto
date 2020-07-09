@@ -10,7 +10,7 @@
 	background-repeat: no-repeat;
 	background-position: center;
 	margin-left: 31px;
-
+	outline: none;
 }
 .card-box__button:hover {
 	cursor: pointer;

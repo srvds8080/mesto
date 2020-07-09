@@ -1,16 +1,29 @@
+
 .edit-form__btn {
-	min-width: 358px;
-	min-height: 50px;
+	width: 90%;
+	max-width: 400px;
+	min-height: 30px;
 	background: #000000;
+	border: none;
 	border-radius: 2px;
 	color: #ffffff;
-	font-size: 18px;
+	font-size: 16px;
 	line-height: 1.2;
 	text-align: center;
 	transition: ease 0.3s;
-}
+	padding: 0;
+	margin-top: 20px;
+	outline: none;
+	}
 .edit-form__btn:hover {
 	transition: ease 0.4s;
 	opacity: .8;
 	cursor: pointer;
+}
+@media screen and (min-width: 768px) {
+	.edit-form__btn {
+	margin-top: 48px;
+		min-width: 358px;
+		min-height: 50px;
+	}
 }
