@@ -6,7 +6,8 @@
 }
 @media screen and (min-width: 768px) {
 	.page__content {
-		max-width: 68.906%;
+		width: 68.906%;
+		max-width: 882px;
 		margin: 0 auto;
 	}
 }
