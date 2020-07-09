@@ -3,7 +3,7 @@
 	height: auto;
 	text-align: start;
 	text-overflow: ellipsis;
-	white-space: nowrap;
+	white-space: pre-wrap;
 	overflow: hidden;
 	margin: 0;
 	font-style: normal;
