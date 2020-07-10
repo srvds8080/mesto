@@ -16,3 +16,6 @@
 	opacity: 0.6;
 	cursor: pointer;
 }
+.profile__edit-btn:active {
+	outline: none;
+}

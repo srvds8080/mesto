@@ -1,4 +1,4 @@
-.add-btn {
+.profile__add-btn {
 	width: 100%;
 	min-height: 50px;
 	background: transparent;
@@ -6,19 +6,19 @@
 	border: 2px solid #ffffff;
 	box-sizing: border-box;
 	border-radius: 2px;
-	background-image: url(../../images/add-btn.svg);
+	background-image: url(../../../images/add-btn.svg);
 	background-repeat: no-repeat;
 	background-position: center;
 	transition: ease 0.3s;
 	outline: none;
 }
 @media screen and (min-width: 768px) {
-	.add-btn {
-		width: 100%;
+	.profile__add-btn {
 		justify-self: end;
+		margin-left: 25px;
 	}
 }
-.add-btn:hover {
+.profile__add-btn:hover {
 	transition: ease 0.5s;
 	opacity: 0.6;
 	cursor: pointer;

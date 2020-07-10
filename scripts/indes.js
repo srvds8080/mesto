@@ -8,35 +8,31 @@ const popupWindow = document.querySelector(".popup"); // модальное ок
 
 const closeProfileEditButton = document.querySelector(".popup__close-btn");// кнопка закрыть окно
 
-const editForm = document.querySelector(".edit-form");// форма редактировать профиль
+const editForm = document.querySelector(".popup__form");// форма редактировать профиль
 
-const editFormName = editForm.querySelector(".form__input_type_name");//поле ввода имени
+const editFormName = editForm.querySelector(".popup__form-input_type_name");//поле ввода имени
 
-const editFormDescription = editForm.querySelector(".form__input_type_description");// поле ввода описаня провиля 
+const editFormDescription = editForm.querySelector(".popup__form-input_type_description");// поле ввода описания профиля 
 
-const saveProfileEditButton = popupWindow.querySelector(".edit-form__btn");//  сохранить проект button
-
-
-
-
+const saveProfileEditButton = popupWindow.querySelector(".popup__form-btn");//  сохранить проект button
 
 function openPopup() {
-	let nameContent = profileName.textContent;
-	let descriptionContent = profileDescription.textContent;
-	editFormName.value = nameContent;
-	editFormDescription.value = descriptionContent;
+	editFormName.value = profileName.textContent;
+	editFormDescription.value = profileDescription.textContent;
 	popupWindow.classList.add('popup_opened');
-
 }
+
 function closePopup() {
 	popupWindow.classList.remove('popup_opened');
 }
+
 function saveForm(evt) {
 	evt.preventDefault();
 	profileName.textContent = editFormName.value;
 	profileDescription.textContent = editFormDescription.value;
-	popupWindow.classList.remove('popup_opened');
+	closePopup();
 }
+
 profileEditButtton.addEventListener('click', openPopup); // открыть окна
 closeProfileEditButton.addEventListener('click', closePopup);// закрыть окно
-editForm.addEventListener('submit', saveForm);
+editForm.addEventListener('submit', saveForm);// активация кнопки сохранить

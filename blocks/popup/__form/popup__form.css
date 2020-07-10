@@ -1,7 +1,4 @@
-@import url(./__btn/edit-form__btn.css);
-@import url(./__input/edit-form__input.css);
-
-.edit-form {
+.popup__form {
 	width: 100%;
 	margin: 0;
 	display: flex;
@@ -9,7 +6,7 @@
 	align-items: center;
 }
 @media screen and (min-width: 768px) {
-	.edit-form {
+	.popup__form {
 		margin: 0 0 48px;
 	}
 }
