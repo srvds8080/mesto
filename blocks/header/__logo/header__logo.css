@@ -1,6 +1,7 @@
 .header__logo {
 	width: 104px;
 	height: 25px;
+	background-image: url(../../../images/logo.svg);
 	object-fit: cover;
 	object-position: center;
 	margin: 0 0 32px 27px;
