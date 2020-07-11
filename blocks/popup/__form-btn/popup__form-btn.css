@@ -12,6 +12,7 @@
 	transition: ease 0.3s;
 	padding: 0;
 	margin-top: 20px;
+	margin-bottom: 20px;
 	outline: none;
 }
 .popup__form-btn:hover {
@@ -25,6 +26,7 @@
 @media screen and (min-width: 768px) {
 	.popup__form-btn {
 		margin-top: 48px;
+		margin-bottom: 0;
 		min-width: 358px;
 		min-height: 50px;
 	}
