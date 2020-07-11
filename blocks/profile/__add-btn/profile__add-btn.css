@@ -12,8 +12,9 @@
 	transition: ease 0.3s;
 	outline: none;
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 900px) {
 	.profile__add-btn {
+		width: 150px;
 		justify-self: end;
 		margin-left: 25px;
 	}
