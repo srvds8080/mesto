@@ -11,7 +11,7 @@
 	.header__logo {
 		width: 142px;
 		height: 34px;
-		background-image: url(../../../images/logo_desktop.svg);
+		background-image: url(../../../images/logoDesktop.svg);
 		margin: 0 0 32px 0;
 	}
 }
