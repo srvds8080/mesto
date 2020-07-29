@@ -3,6 +3,7 @@
 @import url(./__text/card-box__text.css);
 @import url(./__button/card-box__button.css);
 .card-box {
+	width: 282px;
 	display: flex;
 	flex-direction: column;
 	border-radius: 10px;
