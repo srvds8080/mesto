@@ -53,17 +53,25 @@
 						<input type="text" name="popup-input_type_name" class="popup__form-input popup__form-input_type_place"
 							value="Название">
 						<input type="text" name="popup-input_type_url"
-							class="popup__form-input popup__form-input_type_description" value="Ссылка на картинку">
+							class="popup__form-input popup__form-input_type_destination" value="Ссылка на картинку">
 						<button class="popup__form-btn" type="submit">Добавить</button>
 					</form>
 				</div>
+			</div>
+			<div class="popup popup_preview">
+				<figure class="popup__img-box">
+					<button type="button" class="popup__close-btn"></button>
+					<img class="popup__img-preview" src="#" alt="#">
+					<figcaption class="popup__preview-description"></figcaption>
+				</figure>
 			</div>
 		</div>
 	</div>
 
 	<template class="card-content">
 		<div class="card-box elements__item">
-			<img src="" alt="" class="card-box__img">
+			<button class="card-box__delete" type="button"></button>
+			<img src="#" alt="#" class="card-box__img">
 			<div class="card-box__description">
 				<h2 class="card-box__text"></h2>
 				<button type="button" class="card-box__button"></button>
