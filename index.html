@@ -43,10 +43,12 @@
                             name="popup-input_type_name" 
                             class="popup__input popup__input_type_name" 
                             value="Имя"
+                            placeholder="Имя"
                             minlength="2"
                             maxlength="40"
-                            required>
-                            <span class="form__error" id="popup-input_type_name-error"></span>
+                            required
+                            autocomplete="off">
+                            <span class="popup__form-error" id="popup-input_type_name-error"></span>
                         </label>
                         <label class=popup__label>
                             <input 
@@ -54,12 +56,14 @@
                             name="popup-input_type_description" 
                             class="popup__input popup__input_type_description" 
                             value="Профессия"
+                            placeholder="Профессия"
                             minlength="2"
                             maxlength="200"
-                            required>
-                            <span class="form__error" id="popup-input_type_description-error"></span>
+                            required
+                            autocomplete="off">
+                            <span class="popup__form-error" id="popup-input_type_description-error"></span>
                         </label>
-                        <button class="popup__form-btn" type="submit">Сохранить</button>
+                        <button class="popup__form-btn" type="submit" disabled>Сохранить</button>
                     </form>
                 </div>
             </div>
@@ -74,10 +78,12 @@
                             name="popup-input_type_place" 
                             class="popup__input popup__input_type_place" 
                             value="Название"
+                            placeholder="Название"
                             minlength="2"
                             maxlength="30"
-                            required>
-                            <span class="form__error" id="popup-input_type_place-error"></span>
+                            required
+                            autocomplete="off">
+                            <span class="popup__form-error" id="popup-input_type_place-error"></span>
                         </label>
                         <label class="popup__label">
                             <input 
@@ -85,10 +91,12 @@
                             name="popup-input_type_url" 
                             class="popup__input popup__input_type_destination" 
                             value="Ссылка на картинку"
-                            required>
-                            <span class="form__error" id="popup-input_type_url-error"></span>
+                            placeholder="Ссылка на картинку"
+                            required
+                            autocomplete="off">
+                            <span class="popup__form-error" id="popup-input_type_url-error"></span>
                         </label>
-                        <button class="popup__form-btn" type="submit">Добавить</button>
+                        <button class="popup__form-btn" type="submit" disabled>Добавить</button>
                     </form>
                 </div>
             </div>
