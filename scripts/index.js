@@ -22,12 +22,12 @@ const cardTemplateContent = document.querySelector('.card-content').content.quer
 const addForm = addCardWindow.querySelector(".popup__form");
 const addFormName = addForm.querySelector(".popup__input_type_place");
 const addFormDestination = addForm.querySelector(".popup__input_type_destination");
+const addFormError = Array.from(addForm.querySelectorAll('.popup__form-error'));
 
 const editForm = editProfileWindow.querySelector(".popup__form");
 const editFormName = editForm.querySelector(".popup__input_type_name");
 const editFormDescription = editForm.querySelector(".popup__input_type_description");
-
-
+const editFormError = Array.from(editForm.querySelectorAll('.popup__form-error'));
 
 function createCard(data) {
     const cardBox = cardTemplateContent.cloneNode(true);
@@ -53,7 +53,7 @@ function createCard(data) {
     cardImg.addEventListener('click', () => {
         previewDescription.textContent = data.name;
         previewImg.src = data.link;
-        triggerPopup(previewWindow);
+        openPopup(previewWindow);
     })
 
     cardDelete.addEventListener('click', () => {
@@ -63,54 +63,104 @@ function createCard(data) {
     return cardBox;
 }
 
-
-
 function renderCard(data) {
     elements.prepend(createCard(data));
 }
 
 colectionCard.forEach((data) => {
-    renderCard(data);
-})
+        renderCard(data);
+    })
+    //сброс значений сообщений ошибок
+function errorReset(arrayError) {
+    arrayError.forEach((errorElement) => {
+        errorElement.textContent = '';
+        errorElement.classList.remove('popup__form-error_visible');
+    })
+}
 
-function triggerPopup(popupWindow) {
-    popupWindow.classList.toggle('popup_opened');
+//сброс значений инпутов форм
+function resetInput(form) {
+    form.reset();
+    const inputReset = Array.from(form.querySelectorAll('.popup__input')).forEach((inputResetElement) => {
+        inputResetElement.classList.remove('popup__input_type_error');
+    })
+
+}
+//закрытие попаgов esc
+function closePopupEsc(evt) {
+    if (evt.key === 'Escape') {
+        closePopup(addCardWindow);
+        closePopup(editProfileWindow);
+        closePopup(previewWindow);
+        errorReset(addFormError);
+        errorReset(editFormError);
+        resetInput(addForm);
+        resetInput(editForm);
+    }
+}
+//закрытие через overlay
+const popups = Array.from(document.querySelectorAll('.popup')).forEach((popup) => {
+    popup.addEventListener('click', (evt) => {
+        if (evt.target.classList.contains('popup_opened')) {
+            closePopup(evt.target);
+            errorReset(addFormError);
+            errorReset(editFormError);
+            resetInput(addForm);
+            resetInput(editForm);
+        }
+    });
+});
+
+function openPopup(popupWindow) {
+    document.addEventListener('keydown', closePopupEsc);
+    popupWindow.classList.add('popup_opened');
+}
+
+function closePopup(popupWindow) {
+    popupWindow.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closePopupEsc);
 }
 
 function saveEditProfile(evt) {
     evt.preventDefault();
     profileName.textContent = editFormName.value;
     profileDescription.textContent = editFormDescription.value;
-    triggerPopup(editProfileWindow);
+    closePopup(editProfileWindow);
 }
 
 function addCardRender(evt) {
     evt.preventDefault();
     renderCard({ name: addFormName.value, link: addFormDestination.value });
-    triggerPopup(addCardWindow);
+    closePopup(addCardWindow);
 }
-
 
 profileEditButtton.addEventListener('click', () => {
     if (!editProfileWindow.classList.contains('popup_opened')) {
         editFormName.value = profileName.textContent;
         editFormDescription.value = profileDescription.textContent;
     }
-    triggerPopup(editProfileWindow);
+    openPopup(editProfileWindow);
 });
 
 editProfileCloseButton.addEventListener('click', () => {
-    triggerPopup(editProfileWindow);
+    closePopup(editProfileWindow);
+    errorReset(editFormError);
+    resetInput(editForm);
 });
 
 addCardButton.addEventListener('click', () => {
-    triggerPopup(addCardWindow);
+    openPopup(addCardWindow);
 });
 
 addCardCloseButton.addEventListener('click', () => {
-    triggerPopup(addCardWindow);
+    closePopup(addCardWindow);
+    errorReset(addFormError);
+    resetInput(addForm);
 });
 
+imgPreviewCloseButton.addEventListener('click', () => {
+    closePopup(previewWindow);
+})
 editForm.addEventListener('submit', (editProfileWindow) => {
     saveEditProfile(editProfileWindow);
 });
@@ -118,7 +168,3 @@ editForm.addEventListener('submit', (editProfileWindow) => {
 addForm.addEventListener('submit', (addCardWindow) => {
     addCardRender(addCardWindow);
 });
-
-imgPreviewCloseButton.addEventListener('click', () => {
-    triggerPopup(previewWindow);
-})

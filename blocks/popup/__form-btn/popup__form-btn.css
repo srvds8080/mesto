@@ -14,7 +14,6 @@
 	margin-top: 20px;
 	margin-bottom: 20px;
 	outline: none;
-  transition: ease 0.5;
 }
 .popup__form-btn:hover {
 	transition: ease 0.4s;
@@ -24,7 +23,9 @@
 .popup__form-btn:active {
 	outline: none;
 }
-
+.popup__form-btn:disabled {
+	cursor: default;
+}
 @media screen and (min-width: 768px) {
 	.popup__form-btn {
 		margin-top: 48px;
