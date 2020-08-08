@@ -38,23 +38,33 @@ const enableValidation = ({ formSelector, inputSelector, submitButtonSelector, i
                     inputElement.classList.add(inputErrorClass);
                     errorElement.textContent = inputElement.validationMessage;
                     errorElement.classList.add(errorClass);
-                };
-                const isFormValid = inputs.some((inputElement) => !inputElement.validity.valid);
-                if (isFormValid) {
-                    buttonSubmit.some((button) => {
-                        button.classList.add(inactiveButtonClass);
-                        button.disabled = true;
-                    });
+              };
+              
 
-                } else {
-                    buttonSubmit.some((button) => {
-                        button.classList.remove(inactiveButtonClass);
-                        button.disabled = false;
-                    });
-                }
+                //функция валидации кнопки
+                validButtons(inputs, buttonSubmit, inactiveButtonClass);
             });
         });
 
     });
 };
+
+
+//функция валидации кнопки
+function validButtons(input, buttons, classButton) {
+    const isFormValid = input.some((inputElement) => !inputElement.validity.valid);
+    if (isFormValid) {
+        buttons.some((button) => {
+            button.classList.add(classButton);
+            button.disabled = true;
+        });
+
+    } else {
+        buttons.some((button) => {
+            button.classList.remove(classButton);
+            button.disabled = false;
+        });
+    }
+}
+
 enableValidation(validationObject);
