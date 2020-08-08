@@ -20,12 +20,12 @@ const cardTemplateContent = document.querySelector('.card-content').content.quer
 
 //Form data
 const addForm = addCardWindow.querySelector(".popup__form");
-const addFormName = addForm.querySelector(".popup__form-input_type_place");
-const addFormDestination = addForm.querySelector(".popup__form-input_type_destination");
+const addFormName = addForm.querySelector(".popup__input_type_place");
+const addFormDestination = addForm.querySelector(".popup__input_type_destination");
 
 const editForm = editProfileWindow.querySelector(".popup__form");
-const editFormName = editForm.querySelector(".popup__form-input_type_name");
-const editFormDescription = editForm.querySelector(".popup__form-input_type_description");
+const editFormName = editForm.querySelector(".popup__input_type_name");
+const editFormDescription = editForm.querySelector(".popup__input_type_description");
 
 
 
