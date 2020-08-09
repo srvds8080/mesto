@@ -7,6 +7,8 @@
 	flex-wrap: wrap;
 	margin-bottom: 48px;
 	justify-content: center;
+	list-style: none;
+	padding: 0;
 }
 @media screen and (min-width: 421px) {
 	.elements {

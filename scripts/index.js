@@ -151,7 +151,6 @@ function saveEditProfile(evt) {
 function addCardRender(evt) {
     evt.preventDefault();
     renderCard({ name: addFormName.value, link: addFormDestination.value });
-
     closePopup(addCardWindow);
 }
 
@@ -172,8 +171,6 @@ editProfileCloseButton.addEventListener('click', () => {
 
 addCardButton.addEventListener('click', () => {
     if (!addCardWindow.classList.contains('popup_opened')) {
-        addFormName.value = '';
-        addFormDestination.value = '';
     }
     openPopup(addCardWindow);
 });
@@ -181,7 +178,6 @@ addCardButton.addEventListener('click', () => {
 addCardCloseButton.addEventListener('click', () => {
     closePopup(addCardWindow);
     errorReset(addFormError);
-    addForm.reset();
 });
 
 imgPreviewCloseButton.addEventListener('click', () => {
@@ -189,12 +185,10 @@ imgPreviewCloseButton.addEventListener('click', () => {
 })
 editForm.addEventListener('submit', (editProfileWindow) => {
     saveEditProfile(editProfileWindow);
-    editForm.reset();
 });
 
 addForm.addEventListener('submit', (addCardWindow) => {
     addCardRender(addCardWindow);
-    addForm.reset();
 });
 
 colectionCard.forEach((data) => {

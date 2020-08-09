@@ -58,22 +58,21 @@ function validError(form, input, errorClass, inputErrorClass) {
 function setEventListener(listenerItem, listenerParent) {
     return Array.from(listenerParent.querySelectorAll(listenerItem))
 }
-const enableValidation = ({ formSelector, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass }) => {
-    const forms = Array.from(document.querySelectorAll(formSelector));
+
+const enableValidation = (objArr) => {
+    const forms = Array.from(document.querySelectorAll(objArr.formSelector));
     forms.forEach((formElement) => {
         formElement.addEventListener('submit', (evt) => {
             evt.preventDefault();
         });
-
-        const inputs = setEventListener(inputSelector, formElement);
-        const buttonSubmit = setEventListener(submitButtonSelector, formElement);
+        const inputs = setEventListener(objArr.inputSelector, formElement);
+        const buttonSubmit = setEventListener(objArr.submitButtonSelector, formElement);
         inputs.forEach((inputElement) => {
-            validError(formElement, inputElement, errorClass, inputErrorClass);
-            validButtons(inputs, buttonSubmit, inactiveButtonClass);
-
+            validError(formElement, inputElement, objArr.errorClass, objArr.inputErrorClass);
+            validButtons(inputs, buttonSubmit, objArr.inactiveButtonClass);
             inputElement.addEventListener('input', () => {
-                validError(formElement, inputElement, errorClass, inputErrorClass);
-                validButtons(inputs, buttonSubmit, inactiveButtonClass);
+                validError(formElement, inputElement, objArr.errorClass, objArr.inputErrorClass);
+                validButtons(inputs, buttonSubmit, objArr.inactiveButtonClass);
             });
         });
     });
