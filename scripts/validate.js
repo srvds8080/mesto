@@ -5,8 +5,8 @@ const validationObject = {
         inactiveButtonClass: 'popup__form-btn_disabled',
         inputErrorClass: 'popup__input_type_error',
         errorClass: 'popup__form-error_visible'
-}
-//функция валидности инпутов
+    }
+    //функция валидности инпутов
 function validInputs(input, errorElement, errorClass, inputErrorClass) {
     input.classList.remove(errorClass);
     input.classList.remove(inputErrorClass);
@@ -21,9 +21,15 @@ function unValidInputs(input, errorElement, errorClass, inputErrorClass) {
     errorElement.classList.add(errorClass);
 }
 
+
+
+function checkedInput(input) {
+    return input.some((inputItem) => !inputItem.validity.valid);
+}
+
 //функция валидации кнопки
 function validButtons(input, buttons, classButton) {
-    const isFormValid = input.some((inputElement) => !inputElement.validity.valid);
+    const isFormValid = checkedInput(input);
     if (isFormValid) {
         buttons.some((button) => {
             button.classList.add(classButton);
@@ -49,6 +55,9 @@ function validError(form, input, errorClass, inputErrorClass) {
     };
 };
 
+function setEventListener(listenerItem, listenerParent) {
+    return Array.from(listenerParent.querySelectorAll(listenerItem))
+}
 const enableValidation = ({ formSelector, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass }) => {
     const forms = Array.from(document.querySelectorAll(formSelector));
     forms.forEach((formElement) => {
@@ -56,12 +65,12 @@ const enableValidation = ({ formSelector, inputSelector, submitButtonSelector, i
             evt.preventDefault();
         });
 
-        const inputs = Array.from(formElement.querySelectorAll(inputSelector));
-        const buttonSubmit = Array.from(formElement.querySelectorAll(submitButtonSelector));
+        const inputs = setEventListener(inputSelector, formElement);
+        const buttonSubmit = setEventListener(submitButtonSelector, formElement);
         inputs.forEach((inputElement) => {
             validError(formElement, inputElement, errorClass, inputErrorClass);
             validButtons(inputs, buttonSubmit, inactiveButtonClass);
-            
+
             inputElement.addEventListener('input', () => {
                 validError(formElement, inputElement, errorClass, inputErrorClass);
                 validButtons(inputs, buttonSubmit, inactiveButtonClass);

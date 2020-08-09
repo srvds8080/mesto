@@ -1,3 +1,29 @@
+const colectionCard = [{
+        name: 'Архыз',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+        name: 'Челябинская область',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+        name: 'Иваново',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+        name: 'Камчатка',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+        name: 'Холмогорский район',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+        name: 'Байкал',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+];
+
 //Wrappers
 const editProfileWindow = document.querySelector(".popup_edit-profile");
 const addCardWindow = document.querySelector(".popup_add-card");
@@ -40,11 +66,9 @@ function createCard(data) {
     const previewDescription = previewWindow.querySelector('.popup__preview-description');
     const previewImg = previewWindow.querySelector('.popup__img-preview');
 
-
     cardImg.src = data.link;
     cardTitle.textContent = data.name;
     cardImg.alt = data.name;
-
 
     cardLike.addEventListener('click', () => {
         cardLike.classList.toggle('card-box_button-checked');
@@ -67,10 +91,7 @@ function renderCard(data) {
     elements.prepend(createCard(data));
 }
 
-colectionCard.forEach((data) => {
-        renderCard(data);
-    })
-    //сброс значений сообщений ошибок
+//сброс значений сообщений ошибок
 function errorReset(arrayError) {
     arrayError.forEach((errorElement) => {
         errorElement.textContent = '';
@@ -80,45 +101,44 @@ function errorReset(arrayError) {
 
 //сброс значений инпутов форм
 function resetInput(form) {
-    form.reset();
     const inputReset = Array.from(form.querySelectorAll('.popup__input')).forEach((inputResetElement) => {
         inputResetElement.classList.remove('popup__input_type_error');
     })
-
 }
-//закрытие попаgов esc
+
+
+
+//закрытие попаgов Escape
 function closePopupEsc(evt) {
-    if (evt.key === 'Escape') {
-        closePopup(addCardWindow);
-        closePopup(editProfileWindow);
-        closePopup(previewWindow);
-        errorReset(addFormError);
-        errorReset(editFormError);
-        resetInput(addForm);
-        resetInput(editForm);
+    const popup = document.querySelector('.popup_opened');
+    if (popup && evt.key === 'Escape') {
+        closePopup(popup);
     }
 }
+
 //закрытие через overlay
-const popups = Array.from(document.querySelectorAll('.popup')).forEach((popup) => {
-    popup.addEventListener('click', (evt) => {
-        if (evt.target.classList.contains('popup_opened')) {
-            closePopup(evt.target);
-            errorReset(addFormError);
-            errorReset(editFormError);
-            resetInput(addForm);
-            resetInput(editForm);
-        }
-    });
-});
+function closePopupOverlay(evt) {
+    const popup = document.querySelector('.popup_opened');
+    if (evt.target.classList.contains('popup')) {
+        closePopup(popup);
+    }
+};
 
 function openPopup(popupWindow) {
     document.addEventListener('keydown', closePopupEsc);
+    document.addEventListener('click', closePopupOverlay);
     popupWindow.classList.add('popup_opened');
+    errorReset(addFormError);
+    errorReset(editFormError);
+    resetInput(editForm);
+    resetInput(addForm);
 }
 
 function closePopup(popupWindow) {
     popupWindow.classList.remove('popup_opened');
     document.removeEventListener('keydown', closePopupEsc);
+    document.removeEventListener('click', closePopupOverlay);
+
 }
 
 function saveEditProfile(evt) {
@@ -131,8 +151,10 @@ function saveEditProfile(evt) {
 function addCardRender(evt) {
     evt.preventDefault();
     renderCard({ name: addFormName.value, link: addFormDestination.value });
+
     closePopup(addCardWindow);
 }
+
 
 profileEditButtton.addEventListener('click', () => {
     if (!editProfileWindow.classList.contains('popup_opened')) {
@@ -145,17 +167,21 @@ profileEditButtton.addEventListener('click', () => {
 editProfileCloseButton.addEventListener('click', () => {
     closePopup(editProfileWindow);
     errorReset(editFormError);
-    resetInput(editForm);
+    editForm.reset();
 });
 
 addCardButton.addEventListener('click', () => {
+    if (!addCardWindow.classList.contains('popup_opened')) {
+        addFormName.value = '';
+        addFormDestination.value = '';
+    }
     openPopup(addCardWindow);
 });
 
 addCardCloseButton.addEventListener('click', () => {
     closePopup(addCardWindow);
     errorReset(addFormError);
-    resetInput(addForm);
+    addForm.reset();
 });
 
 imgPreviewCloseButton.addEventListener('click', () => {
@@ -163,8 +189,14 @@ imgPreviewCloseButton.addEventListener('click', () => {
 })
 editForm.addEventListener('submit', (editProfileWindow) => {
     saveEditProfile(editProfileWindow);
+    editForm.reset();
 });
 
 addForm.addEventListener('submit', (addCardWindow) => {
     addCardRender(addCardWindow);
+    addForm.reset();
+});
+
+colectionCard.forEach((data) => {
+    renderCard(data);
 });
