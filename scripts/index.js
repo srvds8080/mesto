@@ -32,16 +32,15 @@ const previewWindow = document.querySelector(".popup_preview");
 //Buttons and other DOM elements
 const profileName = document.querySelector(".profile__info-name");
 const profileDescription = document.querySelector(".profile__description");
-const elements = document.querySelector('.elements');
+const profileEditButtton = document.querySelector(".profile__edit-btn");
+const editProfileCloseButton = editProfileWindow.querySelector(".popup__close-btn");
 
 const addCardButton = document.querySelector(".profile__add-btn");
 const addCardCloseButton = addCardWindow.querySelector(".popup__close-btn");
 
 const imgPreviewCloseButton = previewWindow.querySelector(".popup__close-btn");
 
-const profileEditButtton = document.querySelector(".profile__edit-btn");
-const editProfileCloseButton = editProfileWindow.querySelector(".popup__close-btn");
-
+const elements = document.querySelector('.elements');
 const cardTemplateContent = document.querySelector('.card-content').content.querySelector('.card-box');
 
 //Form data
@@ -106,8 +105,6 @@ function resetInput(form) {
     })
 }
 
-
-
 //закрытие попаgов Escape
 function closePopupEsc(evt) {
     const popup = document.querySelector('.popup_opened');
@@ -153,7 +150,6 @@ function addCardRender(evt) {
     renderCard({ name: addFormName.value, link: addFormDestination.value });
     closePopup(addCardWindow);
 }
-
 
 profileEditButtton.addEventListener('click', () => {
     if (!editProfileWindow.classList.contains('popup_opened')) {
