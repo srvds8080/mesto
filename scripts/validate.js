@@ -40,39 +40,29 @@ function validError(form, input, errorClass, inputErrorClass) {
 };
 
 //функция валидации кнопки
-function validButtons(inputs, buttons, classButton) {
+function validButtons(inputs, button, classButton) {
     const isFormValid = checkedInput(inputs);
     if (isFormValid) {
-        buttons.some((button) => {
-            button.classList.add(classButton);
-            button.disabled = true;
-        });
+        button.classList.add(classButton);
+        button.disabled = true;
     } else {
-        buttons.some((button) => {
-            button.classList.remove(classButton);
-            button.disabled = false;
-        });
+        button.classList.remove(classButton);
+        button.disabled = false;
     };
-};
-
-function setItems(itemForm, itemSelector) {
-    return Array.from(itemForm.querySelectorAll(itemSelector));
 };
 
 const enableValidation = ({ formSelector, ...rest }) => {
     const formElement = Array.from(document.querySelectorAll(formSelector));
-    setEventListeners(formElement, rest)
+    formElement.forEach((itemForm) => {
+        itemForm.addEventListener('submit', (evt) => evt.preventDefault());
+    });
+    setEventListeners(formElement, rest);
 };
 
 const setEventListeners = (formElement, { inputSelector, errorClass, inputErrorClass, inactiveButtonClass, submitButtonSelector }) => {
     formElement.forEach((itemForm) => {
-        itemForm.addEventListener('submit', (evt) => {
-            evt.preventDefault();
-        });
-
-        const inputs = setItems(itemForm, inputSelector);
-        const buttonSubmit = setItems(itemForm, submitButtonSelector);
-
+        const inputs = Array.from(itemForm.querySelectorAll(inputSelector));
+        const buttonSubmit = itemForm.querySelector(submitButtonSelector);
         inputs.forEach((input) => {
             validError(itemForm, input, errorClass, inputErrorClass);
             validButtons(inputs, buttonSubmit, inactiveButtonClass);
