@@ -64,8 +64,6 @@ const setEventListeners = (formElement, { inputSelector, errorClass, inputErrorC
         const inputs = Array.from(itemForm.querySelectorAll(inputSelector));
         const buttonSubmit = itemForm.querySelector(submitButtonSelector);
         inputs.forEach((input) => {
-            validError(itemForm, input, errorClass, inputErrorClass);
-            validButtons(inputs, buttonSubmit, inactiveButtonClass);
             input.addEventListener('input', () => {
                 validError(itemForm, input, errorClass, inputErrorClass);
                 validButtons(inputs, buttonSubmit, inactiveButtonClass);
