@@ -95,7 +95,8 @@ class Card {
 }
 
 function renderCard(data) {
-    elements.prepend(new Card(data).returnCard());
+    const card = new Card(data);
+    elements.prepend(card.returnCard());
 }
 
 //сброс значений сообщений ошибок
