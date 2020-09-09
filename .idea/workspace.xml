@@ -19,7 +19,8 @@
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:refactoring" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
@@ -43,9 +44,6 @@
         <option value="JavaScript File" />
       </list>
     </option>
-  </component>
-  <component name="Git.Rebase.Settings">
-    <option name="NEW_BASE" value="master" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -211,10 +209,6 @@
       <screen x="0" y="28" width="1920" height="1052" />
     </state>
     <state x="748" y="222" width="414" height="662" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.28.1920.1052@0.28.1920.1052" timestamp="1599143070632" />
-    <state x="719" y="469" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1599663985801">
-      <screen x="0" y="28" width="1920" height="1052" />
-    </state>
-    <state x="719" y="469" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.28.1920.1052@0.28.1920.1052" timestamp="1599663985801" />
     <state x="706" y="455" width="497" height="195" key="git4idea.ui.GitStashDialog" timestamp="1599248310951">
       <screen x="0" y="28" width="1920" height="1052" />
     </state>
