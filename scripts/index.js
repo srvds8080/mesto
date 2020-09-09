@@ -47,59 +47,8 @@ const editFormName = editForm.querySelector(".popup__input_type_name");
 const editFormDescription = editForm.querySelector(".popup__input_type_description");
 
 function renderCard(data) {
-<<<<<<< HEAD
-    const card = new Card(data);
-    elements.prepend(card.returnCard());
-}
-
-//сброс значений сообщений ошибок
-function errorReset(arrayError) {
-    arrayError.forEach((errorElement) => {
-        errorElement.textContent = '';
-        errorElement.classList.remove('popup__form-error_visible');
-    })
-}
-
-//сброс значений инпутов форм
-function resetInput(form) {
-    const inputReset = Array.from(form.querySelectorAll('.popup__input')).forEach((inputResetElement) => {
-        inputResetElement.classList.remove('popup__input_type_error');
-    })
-}
-
-//закрытие попаgов Escape
-function closePopupEsc(evt) {
-    const popup = document.querySelector('.popup_opened');
-    if (evt.key === 'Escape') {
-        closePopup(popup);
-    }
-}
-
-//закрытие через overlay
-function closePopupOverlay(evt) {
-    const popup = document.querySelector('.popup_opened');
-    if (evt.target.classList.contains('popup')) {
-        closePopup(popup);
-    }
-};
-document.addEventListener('click', closePopupOverlay);
-
-function openPopup(popupWindow) {
-    document.addEventListener('keydown', closePopupEsc);
-    popupWindow.classList.add('popup_opened');
-    errorReset(addFormError);
-    errorReset(editFormError);
-    resetInput(editForm);
-    resetInput(addForm);
-}
-
-function closePopup(popupWindow) {
-    popupWindow.classList.remove('popup_opened');
-    document.removeEventListener('keydown', closePopupEsc);
-=======
     const card = new Card(data, cardTemplateContent);
     elements.prepend(card.returnCard());
->>>>>>> refactoring
 }
 
 function saveEditProfile(evt) {
