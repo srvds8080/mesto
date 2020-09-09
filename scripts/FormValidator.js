@@ -1,15 +1,3 @@
-import {FormValidator} from './FormValidator.js';
-
-const validationObject = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__form-btn',
-    inactiveButtonClass: 'popup__form-btn_disabled',
-    inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__form-error_visible'
-}
-<<<<<<< HEAD
-
 class FormValidator {
     constructor(formElement, {inputSelector, errorClass, inputErrorClass, inactiveButtonClass, submitButtonSelector}) {
         this.formElement = formElement;
@@ -21,12 +9,14 @@ class FormValidator {
     }
 
     _setEventListener() {
-        const inputs = Array.from(this.formElement.querySelectorAll(this.inputSelector));
-        const buttonSubmit = this.formElement.querySelector(this.submitButtonSelector);
-        inputs.forEach((input) => {
-            input.addEventListener('input', () => {
-                this._validError(this.formElement, input);
-                this._validButtons(inputs, buttonSubmit);
+        this.formElement.forEach((itemForm) => {
+            const inputs = Array.from(itemForm.querySelectorAll(this.inputSelector));
+            const buttonSubmit = itemForm.querySelector(this.submitButtonSelector);
+            inputs.forEach((input) => {
+                input.addEventListener('input', () => {
+                    this._validError(itemForm, input);
+                    this._validButtons(inputs, buttonSubmit);
+                });
             });
         });
     }
@@ -73,22 +63,4 @@ class FormValidator {
         this._setEventListener()
     }
 }
-
-=======
-
->>>>>>> refactoring
-const enableValidation = ({formSelector, ...rest}) => {
-    const formElement = Array.from(document.querySelectorAll(formSelector));
-    formElement.forEach((itemForm) => {
-        itemForm.addEventListener('submit', (evt) => evt.preventDefault());
-        const validObject =  new FormValidator(itemForm, rest);
-        validObject.enableValidation();
-    });
-<<<<<<< HEAD
-}
-enableValidation(validationObject);
-=======
-    new FormValidator(formElement, rest).enableValidation();
-}
-enableValidation(validationObject);
->>>>>>> refactoring
+export {FormValidator};
