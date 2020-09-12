@@ -1,8 +1,7 @@
-import {
-    Card
-} from './Card.js';
+import {Card} from './Card.js';
+import {FormValidator} from './FormValidator.js';
 
-const colectionCard = [
+const collectionCard = [
     {
         name: 'Архыз',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -29,10 +28,24 @@ const colectionCard = [
     }
 ]
 
+const validationObject = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__form-btn',
+    inactiveButtonClass: 'popup__form-btn_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__form-error_visible'
+};
+
+//Wrappers
+const previewWindow = document.querySelector(".popup_preview");
+const editProfileWindow = document.querySelector(".popup_edit-profile");
+const addCardWindow = document.querySelector(".popup_add-card");
+
 //Buttons and other DOM elements
 const profileName = document.querySelector(".profile__info-name");
 const profileDescription = document.querySelector(".profile__description");
-const profileEditButtton = document.querySelector(".profile__edit-btn");
+const profileEditButton = document.querySelector(".profile__edit-btn");
 const editProfileCloseButton = editProfileWindow.querySelector(".popup__close-btn");
 const addCardButton = document.querySelector(".profile__add-btn");
 const addCardCloseButton = addCardWindow.querySelector(".popup__close-btn");
@@ -41,15 +54,38 @@ const elements = document.querySelector('.elements');
 const cardTemplateContent = document.querySelector('.card-content').content.querySelector('.card-box');
 
 //Form data
+const editForm = editProfileWindow.querySelector(".popup__form");
+const addForm = addCardWindow.querySelector(".popup__form");
 const addFormName = addForm.querySelector(".popup__input_type_place");
 const addFormDestination = addForm.querySelector(".popup__input_type_destination");
 const editFormName = editForm.querySelector(".popup__input_type_name");
 const editFormDescription = editForm.querySelector(".popup__input_type_description");
 
+
 function renderCard(data) {
-    const card = new Card(data, cardTemplateContent);
+    const card = new Card(data, cardTemplateContent, openPopup);
     elements.prepend(card.returnCard());
 }
+
+// для проверки открытого попапа на форму
+const checkForm = (popupOpened) => {
+    return popupOpened.querySelector('.popup__form');
+
+};
+const openPopup = (popupWindow) => {
+    document.addEventListener('keydown', closePopupEsc);
+    popupWindow.classList.add('popup_opened');
+
+};
+
+const enableValidation = ({formSelector, ...rest}) => {
+    const formElement = Array.from(document.querySelectorAll(formSelector));
+    formElement.forEach((itemForm) => {
+        itemForm.addEventListener('submit', (evt) => evt.preventDefault());
+    });
+    return new FormValidator(formElement, rest);
+}
+enableValidation(validationObject).enableValidation();
 
 function saveEditProfile(evt) {
     evt.preventDefault();
@@ -64,7 +100,31 @@ function addCardRender(evt) {
     closePopup(addCardWindow);
 }
 
-profileEditButtton.addEventListener('click', () => {
+function closePopup(popupWindow) {
+    popupWindow.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closePopupEsc);
+    if (checkForm(popupWindow)) {
+        enableValidation(validationObject).resetForm(checkForm(popupWindow));
+    }
+}
+
+function closePopupEsc(evt) {
+    const popup = document.querySelector('.popup_opened');
+    if (evt.key === 'Escape') {
+        closePopup(popup);
+    }
+}
+
+function closePopupOverlay(evt) {
+    const popup = document.querySelector('.popup_opened');
+    if (evt.target.classList.contains('popup')) {
+        closePopup(popup);
+    }
+}
+
+document.addEventListener('click', closePopupOverlay);
+
+profileEditButton.addEventListener('click', () => {
     if (!editProfileWindow.classList.contains('popup_opened')) {
         editFormName.value = profileName.textContent;
         editFormDescription.value = profileDescription.textContent;
@@ -74,8 +134,6 @@ profileEditButtton.addEventListener('click', () => {
 
 editProfileCloseButton.addEventListener('click', () => {
     closePopup(editProfileWindow);
-    errorReset(editFormError);
-    editForm.reset();
 });
 
 addCardButton.addEventListener('click', () => {
@@ -86,7 +144,6 @@ addCardButton.addEventListener('click', () => {
 
 addCardCloseButton.addEventListener('click', () => {
     closePopup(addCardWindow);
-    errorReset(addFormError);
 });
 
 imgPreviewCloseButton.addEventListener('click', () => {
@@ -100,6 +157,6 @@ addForm.addEventListener('submit', (addCardWindow) => {
     addCardRender(addCardWindow);
 });
 
-colectionCard.forEach((data) => {
+collectionCard.forEach((data) => {
     renderCard(data);
 });
