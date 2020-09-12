@@ -62,30 +62,26 @@ const editFormName = editForm.querySelector(".popup__input_type_name");
 const editFormDescription = editForm.querySelector(".popup__input_type_description");
 
 
-function renderCard(data) {
-    const card = new Card(data, cardTemplateContent, openPopup);
-    elements.prepend(card.returnCard());
-}
-
-// для проверки открытого попапа на форму
-const checkForm = (popupOpened) => {
-    return popupOpened.querySelector('.popup__form');
-
-};
 const openPopup = (popupWindow) => {
     document.addEventListener('keydown', closePopupEsc);
     popupWindow.classList.add('popup_opened');
-
 };
+
 
 const enableValidation = ({formSelector, ...rest}) => {
     const formElement = Array.from(document.querySelectorAll(formSelector));
     formElement.forEach((itemForm) => {
         itemForm.addEventListener('submit', (evt) => evt.preventDefault());
+        const valid = new FormValidator(itemForm, rest);
+        valid.enableValidation();
     });
-    return new FormValidator(formElement, rest);
 }
-enableValidation(validationObject).enableValidation();
+enableValidation(validationObject);
+
+function renderCard(data) {
+    const card = new Card(data, cardTemplateContent, openPopup);
+    elements.prepend(card.returnCard());
+}
 
 function saveEditProfile(evt) {
     evt.preventDefault();
@@ -100,11 +96,16 @@ function addCardRender(evt) {
     closePopup(addCardWindow);
 }
 
+//выбор формы в открытом окне
+const checkForm = (popupOpened) => {
+    return popupOpened.querySelector('.popup__form');
+};
+
 function closePopup(popupWindow) {
     popupWindow.classList.remove('popup_opened');
     document.removeEventListener('keydown', closePopupEsc);
     if (checkForm(popupWindow)) {
-        enableValidation(validationObject).resetForm(checkForm(popupWindow));
+        new FormValidator(checkForm(popupWindow), validationObject).resetForm(checkForm(popupWindow));
     }
 }
 
@@ -121,14 +122,11 @@ function closePopupOverlay(evt) {
         closePopup(popup);
     }
 }
-
 document.addEventListener('click', closePopupOverlay);
 
 profileEditButton.addEventListener('click', () => {
-    if (!editProfileWindow.classList.contains('popup_opened')) {
-        editFormName.value = profileName.textContent;
-        editFormDescription.value = profileDescription.textContent;
-    }
+    editFormName.value = profileName.textContent;
+    editFormDescription.value = profileDescription.textContent;
     openPopup(editProfileWindow);
 });
 
@@ -137,8 +135,6 @@ editProfileCloseButton.addEventListener('click', () => {
 });
 
 addCardButton.addEventListener('click', () => {
-    if (!addCardWindow.classList.contains('popup_opened')) {
-    }
     openPopup(addCardWindow);
 });
 

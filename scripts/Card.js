@@ -5,12 +5,11 @@ class Card {
         this._cardBox = templateContent.cloneNode(true);
         this._previewWindow = document.querySelector(".popup_preview");
         this._openCard = openCard;
-
     }
 
     returnCard() {
         this._getLayout();
-        this._getListener();
+        this._setListener();
         return this._cardBox;
     }
 
@@ -30,7 +29,7 @@ class Card {
         this._cardImg.alt = this._data.name;
     }
 
-    _getListener() {
+    _setListener() {
         this._cardLike.addEventListener('click', () => {
             this._itemChecked();
         })
@@ -55,7 +54,6 @@ class Card {
     _removeCard() {
         this._cardDelete.closest('.card-box').remove();
     }
-
 }
 
 export {Card}

@@ -15,45 +15,17 @@ class FormValidator {
     resetForm(form) {
         this._errorReset(form);
         this._resetInput(form);
-        this._validButton(form)
+        this._validButton(form);
     }
-    _validButton(form){
-        const button = form.querySelector(`${this._submitButtonSelector}`);
-        const inputs = Array.from(form.querySelectorAll(this._inputSelector));
-        const isFormValid = this._checkedInput(inputs);
-        if (isFormValid) {
-            button.classList.add(this._inactiveButtonClass);
-            button.disabled = true;
-        } else {
-            button.classList.remove(this._inactiveButtonClass);
-            button.disabled = false;
-        }
-    }
+
     _setEventListener() {
-        this._formElement.forEach((itemForm) => {
-            const inputs = Array.from(itemForm.querySelectorAll(this._inputSelector));
-            inputs.forEach((input) => {
-                input.addEventListener('input', () => {
-                    this._validError(itemForm, input);
-                    this._validButton(itemForm);
-                });
+        const inputs = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+        inputs.forEach((input) => {
+            input.addEventListener('input', () => {
+                this._validError(this._formElement, input);
+                this._validButton(this._formElement);
             });
         });
-    }
-
-    _errorReset(form) {
-        const textError = Array.from(form.querySelectorAll(`.${this._errorClass}`))
-        textError.forEach((errorElement) => {
-            errorElement.textContent = '';
-            errorElement.classList.remove(`.${this._errorClass}`);
-        })
-    }
-
-    _resetInput(form) {
-        const inputReset = Array.from(form.querySelectorAll(this._inputSelector))
-        inputReset.forEach((inputResetElement) => {
-            inputResetElement.classList.remove(this._inputErrorClass);
-        })
     }
 
     _validError(form, input) {
@@ -81,6 +53,34 @@ class FormValidator {
 
     _checkedInput(inputs) {
         return inputs.some((inputItem) => !inputItem.validity.valid);
+    }
+
+    _validButton(form) {
+        const button = form.querySelector(`${this._submitButtonSelector}`);
+        const inputs = Array.from(form.querySelectorAll(this._inputSelector));
+        const isFormValid = this._checkedInput(inputs);
+        if (isFormValid) {
+            button.classList.add(this._inactiveButtonClass);
+            button.disabled = true;
+        } else {
+            button.classList.remove(this._inactiveButtonClass);
+            button.disabled = false;
+        }
+    }
+
+    _errorReset(form) {
+        const textError = Array.from(form.querySelectorAll(`.${this._errorClass}`))
+        textError.forEach((errorElement) => {
+            errorElement.textContent = '';
+            errorElement.classList.remove(`.${this._errorClass}`);
+        })
+    }
+
+    _resetInput(form) {
+        const inputReset = Array.from(form.querySelectorAll(this._inputSelector))
+        inputReset.forEach((inputResetElement) => {
+            inputResetElement.classList.remove(this._inputErrorClass);
+        })
     }
 }
 
