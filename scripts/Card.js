@@ -31,7 +31,7 @@ class Card {
 
     _setListener() {
         this._cardLike.addEventListener('click', () => {
-            this._itemChecked();
+            this._handleLikeButton();
         })
         this._cardImg.addEventListener('click', () => {
             this._previewCard();
@@ -41,13 +41,14 @@ class Card {
         })
     }
 
-    _itemChecked() {
+    _handleLikeButton() {
         this._cardLike.classList.toggle('card-box_button-checked');
     }
 
     _previewCard() {
         this._previewDescription.textContent = this._data.name;
         this._previewImg.src = this._data.link;
+        this._previewImg.alt = this._data.name;
         this._openCard(this._previewWindow);
     }
 

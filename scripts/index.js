@@ -61,22 +61,34 @@ const addFormDestination = addForm.querySelector(".popup__input_type_destination
 const editFormName = editForm.querySelector(".popup__input_type_name");
 const editFormDescription = editForm.querySelector(".popup__input_type_description");
 
+//Objects
+const editFormValidate = new FormValidator(editForm, validationObject);
+const addCardFormValidate = new FormValidator(addForm, validationObject);
 
-const openPopup = (popupWindow) => {
-    document.addEventListener('keydown', closePopupEsc);
-    popupWindow.classList.add('popup_opened');
-};
 
 
 const enableValidation = ({formSelector, ...rest}) => {
     const formElement = Array.from(document.querySelectorAll(formSelector));
     formElement.forEach((itemForm) => {
         itemForm.addEventListener('submit', (evt) => evt.preventDefault());
-        const valid = new FormValidator(itemForm, rest);
-        valid.enableValidation();
     });
-}
+    editFormValidate.enableValidation();
+    addCardFormValidate.enableValidation();
+};
 enableValidation(validationObject);
+
+const checkForm = (popupOpened) => {
+    return popupOpened.querySelector('.popup__form');
+};
+
+const openPopup = (popupWindow) => {
+    document.addEventListener('keydown', closePopupEsc);
+    popupWindow.classList.add('popup_opened');
+    if (checkForm(popupWindow)) {
+        editFormValidate.resetForm(checkForm(popupWindow));
+        addCardFormValidate.resetForm(checkForm(popupWindow));
+    }
+};
 
 function renderCard(data) {
     const card = new Card(data, cardTemplateContent, openPopup);
@@ -96,17 +108,10 @@ function addCardRender(evt) {
     closePopup(addCardWindow);
 }
 
-//выбор формы в открытом окне
-const checkForm = (popupOpened) => {
-    return popupOpened.querySelector('.popup__form');
-};
 
 function closePopup(popupWindow) {
     popupWindow.classList.remove('popup_opened');
     document.removeEventListener('keydown', closePopupEsc);
-    if (checkForm(popupWindow)) {
-        new FormValidator(checkForm(popupWindow), validationObject).resetForm(checkForm(popupWindow));
-    }
 }
 
 function closePopupEsc(evt) {
@@ -122,6 +127,7 @@ function closePopupOverlay(evt) {
         closePopup(popup);
     }
 }
+
 document.addEventListener('click', closePopupOverlay);
 
 profileEditButton.addEventListener('click', () => {
