@@ -26,10 +26,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="88cbaf83-ff73-44af-b3de-6d619d0857ad" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/components/Section.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/constants.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,6 +114,7 @@
       <workItem from="1599883394403" duration="5190000" />
       <workItem from="1599913154617" duration="7185000" />
       <workItem from="1600027182786" duration="879000" />
+      <workItem from="1601469985689" duration="1207000" />
     </task>
     <task id="LOCAL-00001" summary="add class Card">
       <created>1599151148321</created>
@@ -144,7 +144,14 @@
       <option name="project" value="LOCAL" />
       <updated>1599987725354</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="change file structure">
+      <created>1601451584989</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1601451584989</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -189,7 +196,8 @@
     <MESSAGE value="add new modules" />
     <MESSAGE value="todo bagFix" />
     <MESSAGE value="bagFix-2" />
-    <option name="LAST_COMMIT_MESSAGE" value="bagFix-2" />
+    <MESSAGE value="change file structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="change file structure" />
   </component>
   <component name="WindowStateProjectService">
     <state x="693" y="379" width="523" height="348" key="#Notifications" timestamp="1599146496964">
@@ -212,10 +220,10 @@
       <screen x="0" y="28" width="1920" height="1052" />
     </state>
     <state x="696" y="393" width="518" height="320" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.28.1920.1052@0.28.1920.1052" timestamp="1599116696645" />
-    <state x="439" y="38" width="1032" height="1029" key="CommitChangelistDialog2" timestamp="1599987725157">
+    <state x="439" y="38" width="1032" height="1029" key="CommitChangelistDialog2" timestamp="1601451584760">
       <screen x="0" y="28" width="1920" height="1052" />
     </state>
-    <state x="439" y="38" width="1032" height="1029" key="CommitChangelistDialog2/0.28.1920.1052@0.28.1920.1052" timestamp="1599987725157" />
+    <state x="439" y="38" width="1032" height="1029" key="CommitChangelistDialog2/0.28.1920.1052@0.28.1920.1052" timestamp="1601451584759" />
     <state x="100" y="128" width="1720" height="852" key="DiffContextDialog" timestamp="1599650046261">
       <screen x="0" y="28" width="1920" height="1052" />
     </state>
