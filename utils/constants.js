@@ -1,4 +1,5 @@
-import {FormValidator} from "../components/FormValidator";
+import {FormValidator} from "../components/FormValidator.js";
+
 
 const collectionCard = [
     {
@@ -49,7 +50,7 @@ const editProfileCloseButton = editProfileWindow.querySelector(".popup__close-bt
 const addCardButton = document.querySelector(".profile__add-btn");
 const addCardCloseButton = addCardWindow.querySelector(".popup__close-btn");
 const imgPreviewCloseButton = previewWindow.querySelector(".popup__close-btn");
-const elements = document.querySelector('.elements');
+const elementsContainer = document.querySelector('.elements');
 const cardTemplateContent = document.querySelector('.card-content').content.querySelector('.card-box');
 
 //Form data
@@ -63,6 +64,20 @@ const editFormDescription = editForm.querySelector(".popup__input_type_descripti
 //Objects
 const editFormValidate = new FormValidator(editForm, validationObject);
 const addCardFormValidate = new FormValidator(addForm, validationObject);
+const openPopup = (popupWindow) => {
+    // document.addEventListener('keydown', closePopupEsc);
+    popupWindow.classList.add('popup_opened');
+};
+
+const enableValidation = ({formSelector, ...rest}) => {
+    const formElement = Array.from(document.querySelectorAll(formSelector));
+    formElement.forEach((itemForm) => {
+        itemForm.addEventListener('submit', (evt) => evt.preventDefault());
+    });
+    editFormValidate.enableValidation();
+    addCardFormValidate.enableValidation();
+};
+
 
 export {
     collectionCard,
@@ -70,7 +85,7 @@ export {
     profileEditButton,
     profileDescription,
     imgPreviewCloseButton,
-    elements,
+    elementsContainer,
     editProfileCloseButton,
     editFormName,
     editFormDescription,
@@ -86,5 +101,7 @@ export {
     editProfileWindow,
     validationObject,
     addCardFormValidate,
-    editFormValidate
+    editFormValidate,
+    openPopup,
+    enableValidation
 };

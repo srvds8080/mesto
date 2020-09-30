@@ -27,6 +27,7 @@
   <component name="ChangeListManager">
     <list default="true" id="88cbaf83-ff73-44af-b3de-6d619d0857ad" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Section.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Section.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/constants.js" afterDir="false" />
     </list>
@@ -114,7 +115,7 @@
       <workItem from="1599883394403" duration="5190000" />
       <workItem from="1599913154617" duration="7185000" />
       <workItem from="1600027182786" duration="879000" />
-      <workItem from="1601469985689" duration="1207000" />
+      <workItem from="1601469985689" duration="8176000" />
     </task>
     <task id="LOCAL-00001" summary="add class Card">
       <created>1599151148321</created>
@@ -200,6 +201,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="change file structure" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="589" y="235" width="732" height="635" key="#Inspections" timestamp="1601474552162">
+      <screen x="0" y="28" width="1920" height="1052" />
+    </state>
+    <state x="589" y="235" width="732" height="635" key="#Inspections/0.28.1920.1052@0.28.1920.1052" timestamp="1601474552162" />
     <state x="693" y="379" width="523" height="348" key="#Notifications" timestamp="1599146496964">
       <screen x="0" y="28" width="1920" height="1052" />
     </state>
