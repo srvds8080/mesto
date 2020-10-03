@@ -1,10 +1,9 @@
 class Card {
 
-    constructor(data, templateContent, openCard) {
+    constructor(data, templateContent, {handlePreview}) {
         this._data = data;
         this._cardBox = templateContent.cloneNode(true);
-        this._previewWindow = document.querySelector(".popup_preview");
-        this._openCard = openCard;
+        this._handlePreview = handlePreview;
     }
 
     returnCard() {
@@ -14,8 +13,6 @@ class Card {
     }
 
     _getLayout() {
-        this._previewDescription = this._previewWindow.querySelector('.popup__preview-description');
-        this._previewImg = this._previewWindow.querySelector('.popup__img-preview');
         this._cardImg = this._cardBox.querySelector('.card-box__img');
         this._cardTitle = this._cardBox.querySelector('.card-box__text');
         this._cardLike = this._cardBox.querySelector('.card-box__button');
@@ -34,7 +31,7 @@ class Card {
             this._handleLikeButton();
         })
         this._cardImg.addEventListener('click', () => {
-            this._previewCard();
+            this._handlePreview();
         })
         this._cardDelete.addEventListener('click', () => {
             this._removeCard();
@@ -43,13 +40,6 @@ class Card {
 
     _handleLikeButton() {
         this._cardLike.classList.toggle('card-box_button-checked');
-    }
-
-    _previewCard() {
-        this._previewDescription.textContent = this._data.name;
-        this._previewImg.src = this._data.link;
-        this._previewImg.alt = this._data.name;
-        this._openCard(this._previewWindow);
     }
 
     _removeCard() {

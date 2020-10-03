@@ -1,4 +1,5 @@
 import {FormValidator} from "../components/FormValidator.js";
+import {Popup, PopupWithImage, PopupWithForm} from "../components/Popup.js";
 
 
 const collectionCard = [
@@ -61,13 +62,22 @@ const addFormDestination = addForm.querySelector(".popup__input_type_destination
 const editFormName = editForm.querySelector(".popup__input_type_name");
 const editFormDescription = editForm.querySelector(".popup__input_type_description");
 
+//CallBacks for form
+const submitActionAddCardForm = () => {
+    event.preventDefault();
+    console.log('submit add card');
+}
+const submitActionEditProfileForm = () => {
+    event.preventDefault();
+    console.log('submit edit profile');
+}
 //Objects
 const editFormValidate = new FormValidator(editForm, validationObject);
 const addCardFormValidate = new FormValidator(addForm, validationObject);
-const openPopup = (popupWindow) => {
-    // document.addEventListener('keydown', closePopupEsc);
-    popupWindow.classList.add('popup_opened');
-};
+
+const popupWithImage = new PopupWithImage(previewWindow);
+const addCardPopup = new PopupWithForm(addCardWindow, submitActionAddCardForm, validationObject);
+const editProfilePopup = new PopupWithForm(editProfileWindow, submitActionEditProfileForm, validationObject);
 
 const enableValidation = ({formSelector, ...rest}) => {
     const formElement = Array.from(document.querySelectorAll(formSelector));
@@ -77,7 +87,6 @@ const enableValidation = ({formSelector, ...rest}) => {
     editFormValidate.enableValidation();
     addCardFormValidate.enableValidation();
 };
-
 
 export {
     collectionCard,
@@ -102,6 +111,8 @@ export {
     validationObject,
     addCardFormValidate,
     editFormValidate,
-    openPopup,
-    enableValidation
+    enableValidation,
+    popupWithImage,
+    addCardPopup,
+    editProfilePopup,
 };
