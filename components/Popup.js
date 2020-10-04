@@ -1,20 +1,21 @@
+
 export class Popup {
     constructor(popupSelector) {
         this._popup = popupSelector;
     }
 
     open() {
-        document.addEventListener('keydown', () => this._handleEscClose());
         this._popup.classList.add('popup_opened');
+        this.setEventListeners()
     }
 
     close() {
         document.removeEventListener('keydown', () => this._handleEscClose());
         this._popup.classList.remove('popup_opened');
-
     }
 
     setEventListeners() {
+        document.addEventListener('keydown', () => this._handleEscClose());
         document.addEventListener('click', () => this._handleOverlayClose());
         this._popup.querySelector('.popup__close-btn').addEventListener('click', () => this.close());
     }
@@ -57,12 +58,9 @@ export class PopupWithForm extends Popup {
     setEventListeners() {
         super.setEventListeners();
         this._form.addEventListener('submit', () => {
-            this._submit();
-        })
-    }
-
-    open(card) {
-        super.open();
+            this._submit(this._getInputValues());
+            this.close();
+        });
     }
 
     close() {
@@ -77,7 +75,10 @@ export class PopupWithForm extends Popup {
     _getInputValues() {
         this._inputsValue = {};
         this._arrayInputs.forEach((input) => {
-            this._inputsValue[input.name] = input.value;
+            //устанавливаем свойством объекта последнее слово в свойстве "name",
+            //и присваиваем ему значением input.value:
+            this._inputsValue[input.name.split("_").pop()] = input.value;
         })
+        return this._inputsValue;
     }
 }

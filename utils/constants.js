@@ -1,6 +1,8 @@
 import {FormValidator} from "../components/FormValidator.js";
-import {Popup, PopupWithImage, PopupWithForm} from "../components/Popup.js";
-
+import {PopupWithImage, PopupWithForm} from "../components/Popup.js";
+import {UserInfo} from "../components/UserInfo.js";
+import {Card} from "../components/Card.js";
+import {Section} from "../components/Section.js";
 
 const collectionCard = [
     {
@@ -39,46 +41,25 @@ const validationObject = {
 };
 
 //Wrappers
-const previewWindow = document.querySelector(".popup_preview");
 const editProfileWindow = document.querySelector(".popup_edit-profile");
 const addCardWindow = document.querySelector(".popup_add-card");
+const previewWindow = document.querySelector(".popup_preview");
 
 //Buttons and other DOM elements
 const profileName = document.querySelector(".profile__info-name");
 const profileDescription = document.querySelector(".profile__description");
 const profileEditButton = document.querySelector(".profile__edit-btn");
-const editProfileCloseButton = editProfileWindow.querySelector(".popup__close-btn");
 const addCardButton = document.querySelector(".profile__add-btn");
-const addCardCloseButton = addCardWindow.querySelector(".popup__close-btn");
-const imgPreviewCloseButton = previewWindow.querySelector(".popup__close-btn");
 const elementsContainer = document.querySelector('.elements');
 const cardTemplateContent = document.querySelector('.card-content').content.querySelector('.card-box');
 
 //Form data
 const editForm = editProfileWindow.querySelector(".popup__form");
 const addForm = addCardWindow.querySelector(".popup__form");
-const addFormName = addForm.querySelector(".popup__input_type_place");
-const addFormDestination = addForm.querySelector(".popup__input_type_destination");
 const editFormName = editForm.querySelector(".popup__input_type_name");
 const editFormDescription = editForm.querySelector(".popup__input_type_description");
 
-//CallBacks for form
-const submitActionAddCardForm = () => {
-    event.preventDefault();
-    console.log('submit add card');
-}
-const submitActionEditProfileForm = () => {
-    event.preventDefault();
-    console.log('submit edit profile');
-}
-//Objects
-const editFormValidate = new FormValidator(editForm, validationObject);
-const addCardFormValidate = new FormValidator(addForm, validationObject);
-
-const popupWithImage = new PopupWithImage(previewWindow);
-const addCardPopup = new PopupWithForm(addCardWindow, submitActionAddCardForm, validationObject);
-const editProfilePopup = new PopupWithForm(editProfileWindow, submitActionEditProfileForm, validationObject);
-
+//Functions and callBacks
 const enableValidation = ({formSelector, ...rest}) => {
     const formElement = Array.from(document.querySelectorAll(formSelector));
     formElement.forEach((itemForm) => {
@@ -88,20 +69,53 @@ const enableValidation = ({formSelector, ...rest}) => {
     addCardFormValidate.enableValidation();
 };
 
+
+const setUserDataInForm = ({name, description}, formName, formDescription) => {
+    formName.value = name;
+    formDescription.value = description;
+}
+
+//callback submit for editProfileForm
+const submitActionEditProfileForm = (data) => {
+    userInfo.setUserInfo(data);
+}
+//callback submit for addCardForm
+const submitActionAddCardForm = ({place: name, url: link}) => {
+    const card = rendererCard({name, link});
+    mySection.addItem(card);
+}
+
+const rendererCard = (data) => {
+    const card = new Card(data,
+        cardTemplateContent,
+        {
+            //обработчик на клик по изображению:
+            handlePreview: () => {
+                popupWithImage.open(card);
+                popupWithImage.setEventListeners();
+            }
+        });
+    return card.returnCard();
+}
+
+//Objects
+const editFormValidate = new FormValidator(editForm, validationObject);
+const addCardFormValidate = new FormValidator(addForm, validationObject);
+const mySection = new Section({items: collectionCard, renderer: rendererCard}, elementsContainer);
+const popupWithImage = new PopupWithImage(previewWindow);
+const addCardPopup = new PopupWithForm(addCardWindow, submitActionAddCardForm);
+const editProfilePopup = new PopupWithForm(editProfileWindow, submitActionEditProfileForm);
+const userInfo = new UserInfo({userName: profileName, userDescription: profileDescription});
+
 export {
     collectionCard,
     profileName,
     profileEditButton,
     profileDescription,
-    imgPreviewCloseButton,
     elementsContainer,
-    editProfileCloseButton,
     editFormName,
     editFormDescription,
     cardTemplateContent,
-    addFormName,
-    addFormDestination,
-    addCardCloseButton,
     addCardButton,
     editForm,
     addForm,
@@ -115,4 +129,8 @@ export {
     popupWithImage,
     addCardPopup,
     editProfilePopup,
+    userInfo,
+    setUserDataInForm,
+    mySection
 };
+

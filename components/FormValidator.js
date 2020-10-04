@@ -14,7 +14,7 @@ class FormValidator {
 
     resetForm(form) {
         this._errorReset(form);
-        this._resetInput(form);
+        this._resetInputError(form);
         this._validButton(form);
     }
 
@@ -62,9 +62,11 @@ class FormValidator {
         if (isFormValid) {
             button.classList.add(this._inactiveButtonClass);
             button.disabled = true;
+            console.log('deactive button')
         } else {
             button.classList.remove(this._inactiveButtonClass);
             button.disabled = false;
+            console.log('active button')
         }
     }
 
@@ -76,7 +78,7 @@ class FormValidator {
         })
     }
 
-    _resetInput(form) {
+    _resetInputError(form) {
         const inputReset = Array.from(form.querySelectorAll(this._inputSelector))
         inputReset.forEach((inputResetElement) => {
             inputResetElement.classList.remove(this._inputErrorClass);
