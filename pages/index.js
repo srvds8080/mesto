@@ -20,12 +20,14 @@ mySection.renderItems();
 
 addCardButton.addEventListener('click', () => {
     addCardFormValidate.resetForm(addForm);
+    addCardPopup.setEventListeners();
     addCardPopup.open();
 });
 
 profileEditButton.addEventListener('click', () => {
     editFormValidate.resetForm(editForm);
     setUserDataInForm(userInfo.getUserInfo(), editFormName, editFormDescription);
+    editProfilePopup.setEventListeners();
     editProfilePopup.open();
 })
 

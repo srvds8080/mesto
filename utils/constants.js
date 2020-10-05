@@ -60,7 +60,7 @@ const editFormName = editForm.querySelector(".popup__input_type_name");
 const editFormDescription = editForm.querySelector(".popup__input_type_description");
 
 //Functions and callBacks
-const enableValidation = ({formSelector, ...rest}) => {
+const enableValidation = ({formSelector}) => {
     const formElement = Array.from(document.querySelectorAll(formSelector));
     formElement.forEach((itemForm) => {
         itemForm.addEventListener('submit', (evt) => evt.preventDefault());
@@ -76,13 +76,15 @@ const setUserDataInForm = ({name, description}, formName, formDescription) => {
 }
 
 //callback submit for editProfileForm
-const submitActionEditProfileForm = (data) => {
-    userInfo.setUserInfo(data);
+const submitActionEditProfileForm = ({name, description}) => {
+    userInfo.setUserInfo({name: name, description: description});
+    editProfilePopup.close();
 }
 //callback submit for addCardForm
 const submitActionAddCardForm = ({place: name, url: link}) => {
     const card = rendererCard({name, link});
     mySection.addItem(card);
+    addCardPopup.close();
 }
 
 const rendererCard = (data) => {
@@ -90,9 +92,9 @@ const rendererCard = (data) => {
         cardTemplateContent,
         {
             //обработчик на клик по изображению:
-            handlePreview: () => {
-                popupWithImage.open(card);
+            handleCardClick: () => {
                 popupWithImage.setEventListeners();
+                popupWithImage.open(card);
             }
         });
     return card.returnCard();

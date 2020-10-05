@@ -62,11 +62,9 @@ class FormValidator {
         if (isFormValid) {
             button.classList.add(this._inactiveButtonClass);
             button.disabled = true;
-            console.log('deactive button')
         } else {
             button.classList.remove(this._inactiveButtonClass);
             button.disabled = false;
-            console.log('active button')
         }
     }
 

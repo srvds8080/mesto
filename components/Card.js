@@ -1,9 +1,9 @@
-class Card {
+export class Card {
 
-    constructor(data, templateContent, {handlePreview}) {
+    constructor(data, templateContent, {handleCardClick}) {
         this._data = data;
         this._cardBox = templateContent.cloneNode(true);
-        this._handlePreview = handlePreview;
+        this._handlePreview = handleCardClick;
     }
 
     returnCard() {
@@ -46,5 +46,3 @@ class Card {
         this._cardDelete.closest('.card-box').remove();
     }
 }
-
-export {Card}
