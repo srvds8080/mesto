@@ -78,7 +78,7 @@ export class PopupWithForm extends Popup {
         this._arrayInputs.forEach((item) => item.value = '');
     }
 
-    _getInputValues = () => {
+    _getInputValues() {
         this._inputsValue = {};
         this._arrayInputs.forEach((input) => {
             // выбираем последнее слово в атрибуте "name" элемента "input":
