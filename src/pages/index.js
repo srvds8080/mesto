@@ -1,4 +1,4 @@
-// import './index.css';
+import './index.css';
 import {
     addCardFormValidate,
     editFormValidate,
@@ -15,7 +15,7 @@ import {
     userInfo,
     setUserDataInForm,
     mySection
-} from "../utils/constants.js";
+} from "../scripts/utils/constants.js";
 
 mySection.renderItems();
 
