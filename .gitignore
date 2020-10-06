@@ -1,2 +1,4 @@
 .idea/
 prepros.config
+node_modules/
+dist/
