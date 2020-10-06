@@ -1,5 +1,2 @@
-node_modules
-dist
-directions
+.idea
 prepros.config
-.idea/workspace.xml
