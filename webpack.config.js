@@ -8,6 +8,12 @@ module.exports = {
         filename: 'main.js'
     },
     mode: "development",
+    devServer: {
+        open: 'firefox-developer-edition',
+        liveReload: true,
+        stats: 'errors-only'
+        // index: 'index.html'
+    },
     module: {
         rules: [
             // добавим в него объект правил для бабеля

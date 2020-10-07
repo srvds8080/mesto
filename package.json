@@ -37,7 +37,7 @@
   },
   "scripts": {
     "build": "rimraf ./dist/* && webpack --mode production  ",
-    "dev": "webpack-dev-server --open --watch"
+    "dev": "webpack-dev-server"
   },
   "version": "1.0.0"
 }

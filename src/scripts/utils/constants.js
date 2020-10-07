@@ -1,9 +1,3 @@
-import {FormValidator} from "../components/FormValidator.js";
-import {PopupWithImage, PopupWithForm} from "../components/Popup.js";
-import {UserInfo} from "../components/UserInfo.js";
-import {Card} from "../components/Card.js";
-import {Section} from "../components/Section.js";
-
 const collectionCard = [
     {
         name: 'Архыз',
@@ -59,56 +53,6 @@ const addForm = addCardWindow.querySelector(".popup__form");
 const editFormName = editForm.querySelector(".popup__input_type_name");
 const editFormDescription = editForm.querySelector(".popup__input_type_description");
 
-//Functions and callBacks
-const enableValidation = ({formSelector}) => {
-    const formElement = Array.from(document.querySelectorAll(formSelector));
-    formElement.forEach((itemForm) => {
-        itemForm.addEventListener('submit', (evt) => evt.preventDefault());
-    });
-    editFormValidate.enableValidation();
-    addCardFormValidate.enableValidation();
-};
-
-
-const setUserDataInForm = ({name, description}, formName, formDescription) => {
-    formName.value = name;
-    formDescription.value = description;
-}
-
-//callback submit for editProfileForm
-const submitActionEditProfileForm = ({name, description}) => {
-    userInfo.setUserInfo({name: name, description: description});
-    editProfilePopup.close();
-}
-//callback submit for addCardForm
-const submitActionAddCardForm = ({place: name, url: link}) => {
-    const card = rendererCard({name, link});
-    mySection.addItem(card);
-    addCardPopup.close();
-}
-
-const rendererCard = (data) => {
-    const card = new Card(data,
-        cardTemplateContent,
-        {
-            //обработчик на клик по изображению:
-            handleCardClick: () => {
-                popupWithImage.setEventListeners();
-                popupWithImage.open(card);
-            }
-        });
-    return card.returnCard();
-}
-
-//Objects
-const editFormValidate = new FormValidator(editForm, validationObject);
-const addCardFormValidate = new FormValidator(addForm, validationObject);
-const mySection = new Section({items: collectionCard, renderer: rendererCard}, elementsContainer);
-const popupWithImage = new PopupWithImage(previewWindow);
-const addCardPopup = new PopupWithForm(addCardWindow, submitActionAddCardForm);
-const editProfilePopup = new PopupWithForm(editProfileWindow, submitActionEditProfileForm);
-const userInfo = new UserInfo({userName: profileName, userDescription: profileDescription});
-
 export {
     collectionCard,
     profileName,
@@ -125,14 +69,5 @@ export {
     addCardWindow,
     editProfileWindow,
     validationObject,
-    addCardFormValidate,
-    editFormValidate,
-    enableValidation,
-    popupWithImage,
-    addCardPopup,
-    editProfilePopup,
-    userInfo,
-    setUserDataInForm,
-    mySection
 };
 

@@ -1,5 +1,6 @@
 class FormValidator {
-    constructor(formElement, {inputSelector, errorClass, inputErrorClass, inactiveButtonClass, submitButtonSelector}) {
+    constructor(formElement, {formSelector, inputSelector, errorClass, inputErrorClass, inactiveButtonClass, submitButtonSelector}) {
+        this._forms = Array.from(document.querySelectorAll(formSelector));
         this._formElement = formElement;
         this._inputSelector = inputSelector;
         this._errorClass = errorClass;
@@ -19,6 +20,9 @@ class FormValidator {
     }
 
     _setEventListener() {
+        this._forms.forEach((form) => {
+            form.addEventListener('submit', evt => evt.preventDefault());
+        });
         const inputs = Array.from(this._formElement.querySelectorAll(this._inputSelector));
         inputs.forEach((input) => {
             input.addEventListener('input', () => {

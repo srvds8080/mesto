@@ -1,24 +1,74 @@
-import './index.css';
+//todo remove coment
+// import './index.css';
+import {Card} from "../scripts/components/Card.js";
+import {FormValidator} from "../scripts/components/FormValidator.js";
+import {Section} from "../scripts/components/Section.js";
+import {PopupWithForm, PopupWithImage} from "../scripts/components/Popup.js";
+import {UserInfo} from "../scripts/components/UserInfo.js";
 import {
-    addCardFormValidate,
-    editFormValidate,
-    validationObject,
     addForm,
     editForm,
     addCardButton,
     editFormDescription,
     editFormName,
     profileEditButton,
-    enableValidation,
-    addCardPopup,
-    editProfilePopup,
-    userInfo,
-    setUserDataInForm,
-    mySection
+    cardTemplateContent,
+    validationObject,
+    collectionCard,
+    elementsContainer,
+    previewWindow,
+    addCardWindow,
+    editProfileWindow,
+    profileName,
+    profileDescription
 } from "../scripts/utils/constants.js";
 
-mySection.renderItems();
+//Functions and callBacks
+const enableValidation = (formObject) => {
+    formObject.enableValidation();
+};
 
+const setUserDataInForm = ({name, description}, formName, formDescription) => {
+    formName.value = name;
+    formDescription.value = description;
+}
+
+//callback submit for editProfileForm
+const submitActionEditProfileForm = ({name, description}) => {
+    userInfo.setUserInfo({name: name, description: description});
+    editProfilePopup.close();
+}
+
+//callback submit for addCardForm
+const submitActionAddCardForm = ({place: name, url: link}) => {
+    const card = rendererCard({name, link});
+    mySection.addItem(card);
+    addCardPopup.close();
+}
+
+const rendererCard = (data) => {
+    const card = new Card(data,
+        cardTemplateContent,
+        {
+            //обработчик на клик по изображению:
+            handleCardClick: () => {
+                popupWithImage.setEventListeners();
+                popupWithImage.open(card);
+            }
+        });
+    return card.returnCard();
+}
+
+//Create objects
+const editFormValidate = new FormValidator(editForm, validationObject);
+const addCardFormValidate = new FormValidator(addForm, validationObject);
+const mySection = new Section({items: collectionCard, renderer: rendererCard}, elementsContainer);
+const popupWithImage = new PopupWithImage(previewWindow);
+const addCardPopup = new PopupWithForm(addCardWindow, submitActionAddCardForm);
+const editProfilePopup = new PopupWithForm(editProfileWindow, submitActionEditProfileForm);
+const userInfo = new UserInfo({userName: profileName, userDescription: profileDescription});
+
+//Add DOM listeners
 addCardButton.addEventListener('click', () => {
     addCardFormValidate.resetForm(addForm);
     addCardPopup.setEventListeners();
@@ -32,4 +82,9 @@ profileEditButton.addEventListener('click', () => {
     editProfilePopup.open();
 })
 
-enableValidation(validationObject);
+//init rendering
+mySection.renderItems();
+
+//init validation
+enableValidation(editFormValidate);
+enableValidation(addCardFormValidate);
