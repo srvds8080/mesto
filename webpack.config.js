@@ -34,8 +34,12 @@ module.exports = {
             },
             // добавили правило для обработки файлов
             {
-                test: /\.(png|svg|jpg|gif|woff2)$/,
-                loader: 'file-loader'
+                test: /\.(png|svg|jpg|gif)$/,
+                loader: 'file-loader?name=./images/[name].[ext]'
+            },
+            {
+                test: /\.(eot|ttf|woff|woff2)$/,
+                loader: 'file-loader?name=./fonts/[name].[ext]'
             },
             {
                 test: /\.html$/,

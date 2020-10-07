@@ -1,11 +1,12 @@
 {
-  "name": "mesto",
-  "version": "1.0.0",
-  "description": "#Проект учебного задания от Яндекс Практикума.",
-  "main": "index.js",
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/srvds8080/mesto/issues"
+  },
   "dependencies": {
     "core-js": "^3.6.5"
   },
+  "description": "#Проект учебного задания от Яндекс Практикума.",
   "devDependencies": {
     "@babel/core": "^7.11.6",
     "@babel/preset-env": "^7.11.5",
@@ -22,21 +23,21 @@
     "postcss-cli": "^8.0.0",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "rimraf": "^3.0.2"
   },
-  "scripts": {
-    "build": "rm -rf dist && webpack --mode production  ",
-    "dev": "webpack-dev-server --open --watch"
-  },
+  "homepage": "https://github.com/srvds8080/mesto#readme",
+  "keywords": [],
+  "license": "ISC",
+  "main": "index.js",
+  "name": "mesto",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/srvds8080/mesto.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/srvds8080/mesto/issues"
+  "scripts": {
+    "build": "rimraf ./dist/* && webpack --mode production  ",
+    "dev": "webpack-dev-server --open --watch"
   },
-  "homepage": "https://github.com/srvds8080/mesto#readme"
+  "version": "1.0.0"
 }
