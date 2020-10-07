@@ -2,7 +2,7 @@ export class Card {
 
     constructor(data, templateContent, {handleCardClick}) {
         this._data = data;
-        this._cardBox = templateContent.cloneNode(true);
+        this._templateContent = templateContent;
         this._handlePreview = handleCardClick;
     }
 
@@ -13,11 +13,17 @@ export class Card {
     }
 
     _getLayout() {
+        this._getTemplate();
         this._cardImg = this._cardBox.querySelector('.card-box__img');
         this._cardTitle = this._cardBox.querySelector('.card-box__text');
         this._cardLike = this._cardBox.querySelector('.card-box__button');
         this._cardDelete = this._cardBox.querySelector('.card-box__delete');
         this._setContent();
+    }
+
+    _getTemplate() {
+        this._cardBox = this._templateContent.cloneNode(true);
+        return this._cardBox;
     }
 
     _setContent() {
