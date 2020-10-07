@@ -1,10 +1,11 @@
-//todo remove coment
-// import './index.css';
+import './index.css';
 import {Card} from "../scripts/components/Card.js";
 import {FormValidator} from "../scripts/components/FormValidator.js";
 import {Section} from "../scripts/components/Section.js";
-import {PopupWithForm, PopupWithImage} from "../scripts/components/Popup.js";
+import {PopupWithImage} from "../scripts/components/PopupWithImage.js";
+import {PopupWithForm} from "../scripts/components/PopupWithForm.js";
 import {UserInfo} from "../scripts/components/UserInfo.js";
+
 import {
     addForm,
     editForm,
@@ -51,9 +52,9 @@ const rendererCard = (data) => {
         cardTemplateContent,
         {
             //обработчик на клик по изображению:
-            handleCardClick: () => {
+            handleCardClick: (name, link) => {
                 popupWithImage.setEventListeners();
-                popupWithImage.open(card);
+                popupWithImage.open(name, link);
             }
         });
     return card.returnCard();
@@ -88,3 +89,6 @@ mySection.renderItems();
 //init validation
 enableValidation(editFormValidate);
 enableValidation(addCardFormValidate);
+
+
+

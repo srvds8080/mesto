@@ -4,12 +4,18 @@ export class Section {
         this._renderer = renderer;
         this._container = containerSelector;
     }
-    renderItems(){
+
+    renderItems() {
         this._items.forEach((item) => {
-            this.addItem(this._renderer(item));
+            this.addItem(this._renderer(item), true);
         });
     }
-    addItem(element){
-        this._container.prepend(element);
+
+    addItem(element, isArray) {
+        if (isArray) {
+            this._container.append(element);
+        } else {
+            this._container.prepend(element);
+        }
     }
 }
