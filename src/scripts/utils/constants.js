@@ -1,30 +1,3 @@
-const collectionCard = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-]
-
 const validationObject = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
@@ -38,6 +11,7 @@ const validationObject = {
 const editProfileWindow = document.querySelector(".popup_edit-profile");
 const addCardWindow = document.querySelector(".popup_add-card");
 const previewWindow = document.querySelector(".popup_preview");
+const confirmWindow = document.querySelector(".popup_confirm-action");
 
 //Buttons and other DOM elements
 const profileName = document.querySelector(".profile__info-name");
@@ -50,11 +24,11 @@ const cardTemplateContent = document.querySelector('.card-content').content.quer
 //Form data
 const editForm = editProfileWindow.querySelector(".popup__form");
 const addForm = addCardWindow.querySelector(".popup__form");
+const confirmActionForm = confirmWindow.querySelector(".popup__form");
 const editFormName = editForm.querySelector(".popup__input_type_name");
 const editFormDescription = editForm.querySelector(".popup__input_type_description");
 
 export {
-    collectionCard,
     profileName,
     profileEditButton,
     profileDescription,
@@ -69,5 +43,7 @@ export {
     addCardWindow,
     editProfileWindow,
     validationObject,
+    confirmWindow,
+    confirmActionForm
 };
 

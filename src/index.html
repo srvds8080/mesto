@@ -18,10 +18,10 @@
                     <img src="images/avatar-img.png" alt="Аватар профиля" class="profile__avatar">
                     <div class="profile__info">
                         <div class="profile__info-name-box">
-                            <h1 class="profile__info-name">Жак-Ив Кусто</h1>
+                            <h1 class="profile__info-name"></h1>
                             <button type="button" class="profile__edit-btn"></button>
                         </div>
-                        <p class="profile__description">Исследователь океана</p>
+                        <p class="profile__description"></p>
                     </div>
                     <button type="button" class="profile__add-btn"></button>
                 </section>
@@ -71,27 +71,36 @@
                     <form action="#" name="popup__form" method="get" class="popup__form" novalidate>
                         <label class="popup__label">
                             <input
-                            type="text"
-                            name="popup-input_type_place"
-                            class="popup__input popup__input_type_place"
-                            placeholder="Название"
-                            minlength="2"
-                            maxlength="30"
-                            required
-                            autocomplete="off">
+                                    type="text"
+                                    name="popup-input_type_place"
+                                    class="popup__input popup__input_type_place"
+                                    placeholder="Название"
+                                    minlength="2"
+                                    maxlength="30"
+                                    required
+                                    autocomplete="off">
                             <span class="popup__form-error" id="popup-input_type_place-error"></span>
                         </label>
                         <label class="popup__label">
                             <input
-                            type="url"
-                            name="popup-input_type_url"
-                            class="popup__input popup__input_type_destination"
-                            placeholder="Ссылка на картинку"
-                            required
-                            autocomplete="off">
+                                    type="url"
+                                    name="popup-input_type_url"
+                                    class="popup__input popup__input_type_destination"
+                                    placeholder="Ссылка на картинку"
+                                    required
+                                    autocomplete="off">
                             <span class="popup__form-error" id="popup-input_type_url-error"></span>
                         </label>
                         <button class="popup__form-btn popup__form-btn_disabled" type="submit" disabled>Добавить</button>
+                    </form>
+                </div>
+            </div>
+            <div class="popup popup_confirm-action">
+                <div class="popup__container">
+                    <button type="button" class="popup__close-btn"></button>
+                    <h2 class="popup__title">Вы уверены?</h2>
+                    <form action="#" name="popup__form" method="get" class="popup__form" novalidate>
+                        <button class="popup__form-btn" type="submit">Да</button>
                     </form>
                 </div>
             </div>

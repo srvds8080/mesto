@@ -1,9 +1,10 @@
 export class Card {
 
-    constructor(data, templateContent, {handleCardClick}) {
+    constructor(data, templateContent, {handleCardClick}, {confirmAction}) {
         this._data = data;
         this._templateContent = templateContent;
         this._handlePreview = handleCardClick;
+        this._confirmAction = confirmAction;
     }
 
     returnCard() {
@@ -39,8 +40,9 @@ export class Card {
         this._cardImg.addEventListener('click', () => {
             this._handlePreview(this._data.name, this._data.link);
         })
+
         this._cardDelete.addEventListener('click', () => {
-            this._removeCard();
+            this._confirmAction();
         })
     }
 
