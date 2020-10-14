@@ -7,7 +7,8 @@ export class PopupConfirmAction extends Popup {
         this._submit = submitAction;
     }
 
-    setEventListeners() {
+    setEventListeners(node) {
+        this._node = node;
         super.setEventListeners();
         this._form.addEventListener('submit', this._handleSubmit);
     }
@@ -15,11 +16,10 @@ export class PopupConfirmAction extends Popup {
     close() {
         this._form.removeEventListener('submit', this._handleSubmit);
         super.close();
-
     }
 
     _handleSubmit = () => {
-        this._submit();
+        this._submit(this._node);
         this.close();
     }
 

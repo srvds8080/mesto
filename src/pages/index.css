@@ -24,7 +24,9 @@
 @import url(../blocks/card-box/__description/card-box__description.css);
 @import url(../blocks/card-box/__text/card-box__text.css);
 @import url(../blocks/card-box/__button/card-box__button.css);
+@import url(../blocks/card-box/__button/_likes/card-box__button_likes.css);
 @import url(../blocks/card-box/__delete/card-box__delete.css);
+@import url(../blocks/card-box/__delete/_is-hidden/card-box__delete_is-hidden.css);
 @import url(../blocks/card-box/__button/_button-cheched/card-box_button-cheched.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);

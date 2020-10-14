@@ -1,4 +1,5 @@
 .card-box__button {
+	position: relative;
 	min-width: 21px;
 	height: 19px;
 	background: transparent;
