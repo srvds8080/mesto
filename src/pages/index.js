@@ -78,6 +78,19 @@ const rendererCard = (cardData, userId) => {
                 confirmPopup.open();
                 confirmPopup.setEventListeners(data);
             }
+        },
+        {
+            handleLike: (idCard, likeValue) => {
+                if(likeValue){
+                    api.removeLikeCard(urlCards,idCard).then((res) => {
+                        card.handleLikeButton(false, res.likes)
+                    })
+                } else if(!likeValue){
+                    api.checkLikeCard(urlCards,idCard).then((res) => {
+                        card.handleLikeButton(true, res.likes);
+                    })
+                }
+            }
         }
     );
     return card.returnCard();

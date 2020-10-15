@@ -64,4 +64,30 @@ export class Api {
                 return console.log(error)
             })
     }
+    checkLikeCard(url, idCard) {
+        return fetch(`${url}/likes/${idCard}`,
+            {
+                method: "PUT",
+                headers: this.headers,
+            })
+            .then((res) => {
+                return res.json()
+            })
+            .catch((error) => {
+                return console.log(error)
+            })
+    }
+    removeLikeCard(url, idCard) {
+        return fetch(`${url}/likes/${idCard}`,
+            {
+                method: "DELETE",
+                headers: this.headers,
+            })
+            .then((res) => {
+                return res.json()
+            })
+            .catch((error) => {
+                return console.log(error)
+            })
+    }
 }
