@@ -12,9 +12,12 @@ const editProfileWindow = document.querySelector(".popup_edit-profile");
 const addCardWindow = document.querySelector(".popup_add-card");
 const previewWindow = document.querySelector(".popup_preview");
 const confirmWindow = document.querySelector(".popup_confirm-action");
+const avatarWindow = document.querySelector(".popup_edit-avatar");
+
 
 //Buttons and other DOM elements
-const profileAvatar = document.querySelector(".profile__avatar")
+const profileAvatar = document.querySelector(".profile__avatar");
+const profileAvatarOverlay = document.querySelector('.profile__avatar_overlay');
 const profileName = document.querySelector(".profile__info-name");
 const profileDescription = document.querySelector(".profile__about");
 const profileEditButton = document.querySelector(".profile__edit-btn");
@@ -25,7 +28,7 @@ const cardTemplateContent = document.querySelector('.card-content').content.quer
 //Form data
 const editForm = editProfileWindow.querySelector(".popup__form");
 const addForm = addCardWindow.querySelector(".popup__form");
-const confirmActionForm = confirmWindow.querySelector(".popup__form");
+const editAvatarForm = avatarWindow.querySelector(".popup__form")
 const editFormName = editForm.querySelector(".popup__input_type_name");
 const editFormDescription = editForm.querySelector(".popup__input_type_about");
 
@@ -46,6 +49,8 @@ export {
     editProfileWindow,
     validationObject,
     confirmWindow,
-    confirmActionForm
+    profileAvatarOverlay,
+    editAvatarForm,
+    avatarWindow
 };
 

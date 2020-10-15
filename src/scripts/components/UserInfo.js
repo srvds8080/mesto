@@ -24,10 +24,4 @@ export class UserInfo {
             this._description.textContent = about;
         }
     }
-
-    changeUserInfo({name, about}, url) {
-        this._api.changeUserData(url, {name, about})
-
-        this.setUserInfo({name, about})
-    }
 }

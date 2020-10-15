@@ -11,8 +11,6 @@
 	text-align: center;
 	transition: ease 0.3s;
 	padding: 0;
-	margin-top: 20px;
-	margin-bottom: 20px;
 	outline: none;
 }
 .popup__form-btn:hover {
