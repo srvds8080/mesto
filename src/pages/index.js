@@ -26,13 +26,13 @@ import {
     profileDescription,
     confirmWindow,
     profileAvatarOverlay,
-    editAvatarForm, avatarWindow
+    editAvatarForm,
+    avatarWindow,
+    urlUserData,
+    urlAvatar,
+    urlCards,
+    userId
 } from "../scripts/utils/constants.js";
-
-const urlUserData = "https://mesto.nomoreparties.co/v1/cohort-16/users/me";
-const urlAvatar = "https://mesto.nomoreparties.co/v1/cohort-16/users/me/avatar";
-const urlCards = "https://mesto.nomoreparties.co/v1/cohort-16/cards";
-const userId = '0227e00e-2fc2-48f1-b527-44b2f5fab9ba';
 
 //Functions and callBacks
 const enableValidation = (formObject) => {
@@ -43,92 +43,88 @@ const setUserDataInForm = ({name, about}, formName, formDescription) => {
     formName.value = name;
     formDescription.value = about;
 }
-
-//callback submit for editProfileForm
+// callback submit for editProfileForm
 const submitActionEditProfileForm = ({description: about, name: name}) => {
     editProfilePopup.renderLoader(true);
-    const action = async () => {
-        await api.changeUserData(urlUserData, {name, about}).catch((err) => {
-            console.log(err);
-        });
-        await userInfo.setUserInfo({name, about});
-        editProfilePopup.renderLoader(false);
-        editProfilePopup.close();
-    }
-    action();
+    api.changeUserData(urlUserData, {about, name})
+        .then(res => {
+            userInfo.setUserInfo(res);
+        })
+        .catch(error => {
+            console.log(error)
+        })
+        .finally(() => {
+            editProfilePopup.renderLoader(false);
+            editProfilePopup.close();
+        })
 }
-//callback submit for confirmForm
+
+//callback submit for AddCardForm
 const submitActionAddCardForm = ({place: name, url: link}) => {
     addCardPopup.renderLoader(true);
-    const action = async () => {
-        await api.addCard(urlCards, {name, link}).then((addedCard) => {
+    api.addCard(urlCards, {name, link})
+        .then((addedCard) => {
             mySection.addItem(rendererCard(addedCard, addedCard.owner._id));
-        }).catch((err) => {
+        })
+        .catch((err) => {
             console.log(err);
-        });
-        addCardPopup.renderLoader(false);
-        addCardPopup.close();
-    }
-    action();
+        })
+        .finally(() => {
+            addCardPopup.renderLoader(false);
+            addCardPopup.close();
+        })
 }
 //callback submit for confirmPopup
 const submitActionConfirmForm = ({id, node}) => {
     confirmPopup.renderLoader(true);
-    const action = async () => {
-        await api.deleteCard(urlCards, id).catch((err) => {
+    api.deleteCard(urlCards, id)
+        .then(() => {
+            node.remove();
+        })
+        .catch((err) => {
             console.log(err);
-        });
-        ;
-        node.remove();
-        confirmPopup.renderLoader(false);
-        confirmPopup.close();
-    }
-    action();
+        })
+        .finally(() => {
+            confirmPopup.renderLoader(false);
+            confirmPopup.close();
+        })
 }
 //callback submit for avatarForm
 const submitActionEditAvatarForm = (data) => {
     editAvatar.renderLoader(true);
-    const action = async () => {
-        await api.changeUserAvatar(urlAvatar, data).then(res => {
-            return userInfo.setUserInfo(res);
-        }).catch((err) => {
+    api.changeUserAvatar(urlAvatar, data).then(res => {
+        return userInfo.setUserInfo(res);
+    })
+        .catch((err) => {
             console.log(err);
-        });
-        editAvatar.renderLoader(false);
-        editAvatar.close();
-
-    }
-    action();
-
+        })
+        .finally(() => {
+            editAvatar.renderLoader(false);
+            editAvatar.close();
+        })
 }
 
 const rendererCard = (cardData, userId) => {
     const card = new Card(cardData, userId,
         cardTemplateContent,
-        {
-            //обработчик на клик по изображению:
-            handleCardClick: (name, link) => {
-                popupWithImage.setEventListeners();
-                popupWithImage.open(name, link);
-            }
+        //обработчик на клик по изображению:
+        (name, link) => {
+            popupWithImage.setEventListeners();
+            popupWithImage.open(name, link);
         },
-        {
-            confirmAction: (data) => {
-                confirmPopup.open();
-                confirmPopup.setEventListeners(data);
-            }
+        (data) => {
+            confirmPopup.open();
+            confirmPopup.setEventListeners(data);
         },
-        {
-            handleLike: (idCard, likeValue) => {
-                if (likeValue) {
-                    api.removeLikeCard(urlCards, idCard).then((res) => {
-                        card.handleLikeButton(false, res.likes)
-                    })
-                } else if (!likeValue) {
-                    api.checkLikeCard(urlCards, idCard).then((res) => {
-                        card.handleLikeButton(true, res.likes);
-                    })
-                }
+        (idCard, likeValue) => {
+            if (likeValue) {
+                api.removeLikeCard(urlCards, idCard).then((res) => {
+                    card.handleLikeButton(false, res.likes)
+                })
+            } else if (!likeValue) {
+                api.checkLikeCard(urlCards, idCard).then((res) => {
+                    card.handleLikeButton(true, res.likes);
+                })
             }
         }
     );

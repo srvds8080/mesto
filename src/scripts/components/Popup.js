@@ -19,13 +19,13 @@ export class Popup {
         this._popup.querySelector('.popup__close-btn').addEventListener('click', this.close);
     }
 
-    _handleOverlayClose = () => {
+    _handleOverlayClose = (event) => {
         if (event.target.classList.contains('popup')) {
             this.close();
         }
     }
 
-    _handleEscClose = () => {
+    _handleEscClose = (event) => {
         if (event.key === 'Escape') {
             this.close()
         }

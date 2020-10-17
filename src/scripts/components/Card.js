@@ -1,6 +1,6 @@
 export class Card {
 
-    constructor(data, userId, templateContent, {handleCardClick}, {confirmAction}, {handleLike}) {
+    constructor(data, userId, templateContent, handleCardClick, confirmAction, handleLike) {
         this._data = data;
         this._userId = userId;
         this._templateContent = templateContent;
@@ -30,10 +30,8 @@ export class Card {
             this._cardLike.classList.add('card-box_button-checked');
         }
 
-        if (this._data.owner) {
-            if (this._userId !== this._data.owner._id) {
+        if (this._data.owner && this._userId !== this._data.owner._id) {
                 this._cardDelete.classList.add('card-box__delete_is-hidden');
-            }
         }
         this._setContent();
     }
@@ -66,13 +64,11 @@ export class Card {
 
     handleLikeButton(value, likesArray) {
         if (!value) {
-            this._likeValue = value;
             this._cardLike.classList.remove('card-box_button-checked');
-            this._cardLikeCount.textContent = likesArray.length;
-        } else if (value) {
-            this._likeValue = value;
+        } else {
             this._cardLike.classList.add('card-box_button-checked');
-            this._cardLikeCount.textContent = likesArray.length;
         }
+        this._likeValue = value;
+        this._cardLikeCount.textContent = likesArray.length;
     }
 }

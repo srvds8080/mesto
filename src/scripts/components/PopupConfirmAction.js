@@ -14,13 +14,12 @@ export class PopupConfirmAction extends PopupWithForm {
     }
 
     close() {
-        this._form.removeEventListener('submit', this._handleSubmit);
         super.close();
+        this._form.removeEventListener('submit', this._handleSubmit);
     }
 
     _handleSubmit = () => {
         this._submit(this._node);
-        this.close();
     }
 
 

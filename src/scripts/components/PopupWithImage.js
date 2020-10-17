@@ -8,9 +8,7 @@ export class PopupWithImage extends Popup {
 
     open(name, link) {
         super.open();
-        this._name = name;
-        this._link = link;
-        this._imgPreview.src = this._link;
-        this._imgPreview.alt = this._name;
+        this._imgPreview.src = link;
+        this._imgPreview.alt = name;
     }
 }

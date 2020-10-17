@@ -3,7 +3,6 @@ export class UserInfo {
         this._name = name;
         this._description = about;
         this._avatar = avatar;
-        this._api = api;
     }
 
     getUserInfo() {
@@ -15,13 +14,10 @@ export class UserInfo {
     }
 
     setUserInfo({name, about, avatar}) {
-        if(avatar) {
+        if (avatar) {
             this._avatar.src = avatar;
-            this._name.textContent = name;
-            this._description.textContent = about;
-        } else {
-            this._name.textContent = name;
-            this._description.textContent = about;
         }
+        this._name.textContent = name;
+        this._description.textContent = about;
     }
 }

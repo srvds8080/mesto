@@ -32,6 +32,12 @@ const editAvatarForm = avatarWindow.querySelector(".popup__form")
 const editFormName = editForm.querySelector(".popup__input_type_name");
 const editFormDescription = editForm.querySelector(".popup__input_type_about");
 
+//helper data
+const urlUserData = "https://mesto.nomoreparties.co/v1/cohort-16/users/me";
+const urlAvatar = "https://mesto.nomoreparties.co/v1/cohort-16/users/me/avatar";
+const urlCards = "https://mesto.nomoreparties.co/v1/cohort-16/cards";
+const userId = '0227e00e-2fc2-48f1-b527-44b2f5fab9ba';
+
 export {
     profileAvatar,
     profileName,
@@ -51,6 +57,10 @@ export {
     confirmWindow,
     profileAvatarOverlay,
     editAvatarForm,
-    avatarWindow
+    avatarWindow,
+    userId,
+    urlCards,
+    urlUserData,
+    urlAvatar
 };
 
